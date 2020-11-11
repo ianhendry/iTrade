@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.gracefl.tradeplus"
+    },
+    "jhipsterVersion": "6.10.3",
+    "applicationType": "monolith",
+    "baseName": "iTrade",
+    "packageName": "com.gracefl.tradeplus",
+    "packageFolder": "com/gracefl/tradeplus",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTU0MDEwZDBjNzMxMGUzZmNhYzM5YjcyOWQxOGVmMzU5NDIxMjUzMmY2MGJlNzA2ZGRhNzliMjE4M2U4ODU4ZjhjOGM5NjE3MWQ2NDFjNmY5MjRmYTQ1ODcyNGM3NzUyZWEzOTIwYTMyNWE0Nzk0YmM0NWFiZThmN2JlZjBiN2U=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1605093497010,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
