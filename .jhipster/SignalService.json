@@ -1,0 +1,101 @@
+{
+  "name": "SignalService",
+  "fields": [
+    {
+      "fieldName": "alertDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "alertTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "alertText",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "alertDescription",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "signalIndicates",
+      "fieldType": "SIGNALINDICATES",
+      "fieldValues": "STRENGTH,WEAKNESS"
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "timeframe",
+      "fieldType": "TIMEFRAME",
+      "fieldValues": "M1,M5,M15,M30,H1,H4,D1,W1",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "alertPrice",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "isSequencePresent",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "barVolume",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "barSize",
+      "fieldType": "SIGNALBARSIZE",
+      "fieldValues": "SMALL,MEDIUM,LARGE,VERYLARGE,GIGANTIC"
+    },
+    {
+      "fieldName": "barClose",
+      "fieldType": "BARCLOSE",
+      "fieldValues": "MIDDLE,TOP,LOW,MIDTOP,MIDLOW"
+    },
+    {
+      "fieldName": "isPublished",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tradeSignals",
+      "otherEntityRelationshipName": "signalService",
+      "relationshipName": "tradeSignals",
+      "otherEntityField": "name"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "instrument",
+      "otherEntityRelationshipName": "signalService",
+      "relationshipName": "intrument",
+      "otherEntityField": "ticker",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "priceDataHistory",
+      "otherEntityRelationshipName": "signalService",
+      "relationshipName": "priceDataHistory",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201111113011",
+  "javadoc": "used to persist when a signal is found",
+  "entityTableName": "signal_service",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

@@ -1,0 +1,36 @@
+{
+  "iTradeApp": {
+    "dailyAnalysisPost": {
+      "home": {
+        "title": "Daily Analysis Posts",
+        "createLabel": "Create a new Daily Analysis Post",
+        "createOrEditLabel": "Create or edit a Daily Analysis Post",
+        "notFound": "No Daily Analysis Posts found"
+      },
+      "created": "A new Daily Analysis Post is created with identifier {{ param }}",
+      "updated": "A Daily Analysis Post is updated with identifier {{ param }}",
+      "deleted": "A Daily Analysis Post is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Daily Analysis Post {{ id }}?"
+      },
+      "detail": {
+        "title": "Daily Analysis Post"
+      },
+      "postTitle": "Post Title",
+      "dateAdded": "Date Added",
+      "dayOfWeek": "Day Of Week",
+      "backgroundVolume": "Background Volume",
+      "priceAction": "Price Action",
+      "reasonsToEnter": "Reasons To Enter",
+      "warningSigns": "Warning Signs",
+      "dailyChartImage": "Daily Chart Image",
+      "oneHrChartImage": "One Hr Chart Image",
+      "fiveMinChartImage": "Five Min Chart Image",
+      "planForToday": "Plan For Today",
+      "highVolBar": "High Vol Bar",
+      "highVolBarLocation": "High Vol Bar Location",
+      "instrument": "Instrument",
+      "mt4Account": "Mt 4 Account"
+    }
+  }
+}

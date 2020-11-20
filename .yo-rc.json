@@ -34,7 +34,29 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "enableTranslation": false,
-    "blueprints": []
-  }
+    "enableTranslation": true,
+    "blueprints": [],
+    "skipUserManagement": false,
+    "languages": ["en", "fr"],
+    "nativeLanguage": "en",
+    "skipClient": false,
+    "skipServer": false
+  },
+  "entities": [
+    "PriceDataHistory",
+    "KeyValuePairs",
+    "SignalSequences",
+    "TradeSignals",
+    "SignalService",
+    "SiteAccount",
+    "Mt4Account",
+    "ShippingDetails",
+    "TradeJournalPost",
+    "DailyAnalysisPost",
+    "VideoPost",
+    "Comment",
+    "Watchlist",
+    "Instrument",
+    "Mt4Trade"
+  ]
 }

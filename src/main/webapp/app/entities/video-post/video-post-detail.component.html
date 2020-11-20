@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="videoPost">
+            <h2><span jhiTranslate="iTradeApp.videoPost.detail.title">Video Post</span> {{ videoPost.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.videoPost.postTitle">Post Title</span></dt>
+                <dd>
+                    <span>{{ videoPost.postTitle }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.videoPost.postBody">Post Body</span></dt>
+                <dd>
+                    <span>{{ videoPost.postBody }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.videoPost.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{ videoPost.dateAdded }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.videoPost.dateApproved">Date Approved</span></dt>
+                <dd>
+                    <span>{{ videoPost.dateApproved }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.videoPost.media">Media</span></dt>
+                <dd>
+                    <div *ngIf="videoPost.media">
+                        <a (click)="openFile(videoPost.mediaContentType, videoPost.media)" jhiTranslate="entity.action.open">open</a>
+                        {{ videoPost.mediaContentType }}, {{ byteSize(videoPost.media) }}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/video-post', videoPost.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "iTradeApp": {
+    "instrument": {
+      "home": {
+        "title": "Instruments",
+        "createLabel": "Créer un nouveau Instrument",
+        "createOrEditLabel": "Créer ou éditer un Instrument",
+        "notFound": "Aucun Instrument trouvé"
+      },
+      "created": "Un nouveau Instrument a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Instrument avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Instrument avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Instrument {{ id }} ?"
+      },
+      "detail": {
+        "title": "Instrument"
+      },
+      "dataProvider": "Data Provider",
+      "ticker": "Ticker",
+      "exchange": "Exchange",
+      "description": "Description",
+      "dataFrom": "Data From",
+      "isActive": "Is Active",
+      "dateAdded": "Date Added",
+      "dateInactive": "Date Inactive",
+      "watchlist": "Watchlist",
+      "signalService": "Signal Service"
+    }
+  }
+}

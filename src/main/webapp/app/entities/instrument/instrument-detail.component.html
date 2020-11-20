@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="instrument">
+            <h2><span jhiTranslate="iTradeApp.instrument.detail.title">Instrument</span> {{ instrument.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.instrument.dataProvider">Data Provider</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.DATAPROVIDER.' + instrument.dataProvider }}">{{ instrument.dataProvider }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.instrument.ticker">Ticker</span></dt>
+                <dd>
+                    <span>{{ instrument.ticker }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.instrument.exchange">Exchange</span></dt>
+                <dd>
+                    <span>{{ instrument.exchange }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.instrument.description">Description</span></dt>
+                <dd>
+                    <span>{{ instrument.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.instrument.dataFrom">Data From</span></dt>
+                <dd>
+                    <span>{{ instrument.dataFrom }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.instrument.isActive">Is Active</span></dt>
+                <dd>
+                    <span>{{ instrument.isActive }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.instrument.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{ instrument.dateAdded }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.instrument.dateInactive">Date Inactive</span></dt>
+                <dd>
+                    <span>{{ instrument.dateInactive }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/instrument', instrument.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

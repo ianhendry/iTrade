@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jms="http://www.springframework.org/schema/jms"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/jms
+    http://www.springframework.org/schema/jms/spring-jms.xsd">
+
+  <context:component-scan base-package="com.gracefl.tradeplus" />
+
+  <bean id="zmqConnectionFactory" class="org.zeromq.jms.ZmqConnectionFactory">
+    <property name="destinations" >
+      <array>
+        <value>jms:queue:destination?socket.type=SUB&amp;socket.connect=true&amp;socket.addr=tcp://*:32770&amp;redelivery.retry=3</value>  
+       <!--  <value>jms:queue:queue_1?socket.type=SUB&amp;socket.addr=tcp://*:32770&amp;event=stomp</value>
+       gateway.addr=tcp://localhost:32770&amp;redelivery.retry=0&amp;socket.bind=connect
+       gateway=par&socket.type=DEALER&socket.bind=true&socket.addr=tcp://*:95862&redelivery.retry=3
+       -->
+      </array>
+    </property>
+  </bean>
+  
+  <!-- the MT4 side is BIND so here we need to connect not bind to the socket -->
+  
+  <bean id="jmsConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+    <constructor-arg ref="zmqConnectionFactory" />
+  </bean>
+    
+	<bean id="jmsDefaultDestination" class="org.zeromq.jms.ZmqQueue">
+    <constructor-arg name="name" value="destination" />
+  </bean>
+  <!--   
+  <bean id="jmsMt4Destination" class="org.zeromq.jms.ZmqJMSConsumer">
+    <property name="context" ref="jmsConnectionFactory" />
+    <property name="consumer" ref="jmsMessageListener" />
+  </bean>
+ 	-->
+  <!-- JmsTemplate Definition -->
+  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory" ref="jmsConnectionFactory" />
+    <property name="defaultDestination" ref="jmsDefaultDestination" />
+  </bean>
+
+  <bean id="jmsMessageListener" class="com.gracefl.tradeplus.marketdata.ZmqListener" />
+
+  <!-- 
+  <bean id="jmsDefaultDestination" class="org.zeromq.jms.ZmqQueueReciever">
+    <property name="socketConsumer" ref="jmsConnectionFactory" />
+    <property name="destination" ref="jmsDefaultDestination" />
+    <property name="messageSelector" ref="jmsMessageListener" />
+    <property name="exceptionHandler" ref="jmsDefaultDestination" />
+  </bean>
+  
+  <bean id="zmqGateway" class="org.zeromq.jms.protocol.ZmqGateway" />
+   -->
+  <jms:listener-container container-type="default" connection-factory="jmsConnectionFactory" acknowledge="auto">
+        <jms:listener destination="destination" ref="jmsMessageListener" />
+  </jms:listener-container>
+</beans>

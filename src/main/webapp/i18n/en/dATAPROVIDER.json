@@ -1,0 +1,10 @@
+{
+  "iTradeApp": {
+    "DATAPROVIDER": {
+      "null": "",
+      "FXPRO": "FXPRO",
+      "QUANDLL": "QUANDLL",
+      "TRADENAVIGATOR": "TRADENAVIGATOR"
+    }
+  }
+}

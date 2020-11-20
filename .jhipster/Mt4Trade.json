@@ -1,0 +1,87 @@
+{
+  "name": "Mt4Trade",
+  "fields": [
+    {
+      "fieldName": "ticket",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "openTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "directionType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "positionSize",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "openPrice",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "stopLossPrice",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "takeProfitPrice",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "closeTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "closePrice",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "commission",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "taxes",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "swap",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "profit",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "tradeJournalPost",
+      "otherEntityRelationshipName": "mt4Trade",
+      "relationshipName": "tradeJournalPost",
+      "otherEntityField": "postTitle",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "instrument",
+      "otherEntityRelationshipName": "mt4Trade",
+      "relationshipName": "instrument",
+      "otherEntityField": "ticker",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20201111114011",
+  "entityTableName": "mt_4_trade",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

@@ -1,0 +1,65 @@
+{
+  "name": "PriceDataHistory",
+  "fields": [
+    {
+      "fieldName": "priceTimeframe",
+      "fieldType": "TIMEFRAME",
+      "fieldValues": "M1,M5,M15,M30,H1,H4,D1,W1",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "priceDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "priceTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "priceOpen",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "priceHigh",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "priceLow",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "priceClose",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "priceVolume",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "signalService",
+      "otherEntityRelationshipName": "priceDataHistory",
+      "relationshipName": "signalService"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "instrument",
+      "otherEntityRelationshipName": "priceDataHistory",
+      "relationshipName": "instrument",
+      "otherEntityField": "ticker"
+    }
+  ],
+  "changelogDate": "20201111112611",
+  "entityTableName": "price_data_history",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity PriceDataHistory.
+    -->
+    <changeSet id="20201111112611-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="instrument_id"
+                                 baseTableName="price_data_history"
+                                 constraintName="fk_price_data_history_instrument_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="instrument"/>
+
+    </changeSet>
+</databaseChangeLog>

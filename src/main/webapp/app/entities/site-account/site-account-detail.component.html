@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="siteAccount">
+            <h2><span jhiTranslate="iTradeApp.siteAccount.detail.title">Site Account</span> {{ siteAccount.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.siteAccount.accountEmail">Account Email</span></dt>
+                <dd>
+                    <span>{{ siteAccount.accountEmail }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.siteAccount.accountName">Account Name</span></dt>
+                <dd>
+                    <span>{{ siteAccount.accountName }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.siteAccount.accountReal">Account Real</span></dt>
+                <dd>
+                    <span>{{ siteAccount.accountReal }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.siteAccount.accountBalance">Account Balance</span></dt>
+                <dd>
+                    <span>{{ siteAccount.accountBalance }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.siteAccount.accountOpenDate">Account Open Date</span></dt>
+                <dd>
+                    <span>{{ siteAccount.accountOpenDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.siteAccount.accountCloseDate">Account Close Date</span></dt>
+                <dd>
+                    <span>{{ siteAccount.accountCloseDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.siteAccount.user">User</span></dt>
+                <dd>
+                    {{ siteAccount.user?.login }}
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.siteAccount.mt4Account">Mt 4 Account</span></dt>
+                <dd>
+                    <div *ngIf="siteAccount.mt4Account">
+                        <a [routerLink]="['/mt-4-account', siteAccount.mt4Account?.id, 'view']">{{ siteAccount.mt4Account?.accountLogin }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/site-account', siteAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

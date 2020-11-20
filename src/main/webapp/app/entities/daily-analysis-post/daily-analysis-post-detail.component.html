@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dailyAnalysisPost">
+            <h2><span jhiTranslate="iTradeApp.dailyAnalysisPost.detail.title">Daily Analysis Post</span> {{ dailyAnalysisPost.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.postTitle">Post Title</span></dt>
+                <dd>
+                    <span>{{ dailyAnalysisPost.postTitle }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{ dailyAnalysisPost.dateAdded }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.dayOfWeek">Day Of Week</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.DAYOFWEEK.' + dailyAnalysisPost.dayOfWeek }}">{{ dailyAnalysisPost.dayOfWeek }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.backgroundVolume">Background Volume</span></dt>
+                <dd>
+                    <span>{{ dailyAnalysisPost.backgroundVolume }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.priceAction">Price Action</span></dt>
+                <dd>
+                    <span>{{ dailyAnalysisPost.priceAction }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.reasonsToEnter">Reasons To Enter</span></dt>
+                <dd>
+                    <span>{{ dailyAnalysisPost.reasonsToEnter }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.warningSigns">Warning Signs</span></dt>
+                <dd>
+                    <span>{{ dailyAnalysisPost.warningSigns }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.dailyChartImage">Daily Chart Image</span></dt>
+                <dd>
+                    <div *ngIf="dailyAnalysisPost.dailyChartImage">
+                        <a (click)="openFile(dailyAnalysisPost.dailyChartImageContentType, dailyAnalysisPost.dailyChartImage)">
+                            <img [src]="'data:' + dailyAnalysisPost.dailyChartImageContentType + ';base64,' + dailyAnalysisPost.dailyChartImage" style="max-width: 100%;" alt="dailyAnalysisPost image"/>
+                        </a>
+                        {{ dailyAnalysisPost.dailyChartImageContentType }}, {{ byteSize(dailyAnalysisPost.dailyChartImage) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.oneHrChartImage">One Hr Chart Image</span></dt>
+                <dd>
+                    <div *ngIf="dailyAnalysisPost.oneHrChartImage">
+                        <a (click)="openFile(dailyAnalysisPost.oneHrChartImageContentType, dailyAnalysisPost.oneHrChartImage)">
+                            <img [src]="'data:' + dailyAnalysisPost.oneHrChartImageContentType + ';base64,' + dailyAnalysisPost.oneHrChartImage" style="max-width: 100%;" alt="dailyAnalysisPost image"/>
+                        </a>
+                        {{ dailyAnalysisPost.oneHrChartImageContentType }}, {{ byteSize(dailyAnalysisPost.oneHrChartImage) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.fiveMinChartImage">Five Min Chart Image</span></dt>
+                <dd>
+                    <div *ngIf="dailyAnalysisPost.fiveMinChartImage">
+                        <a (click)="openFile(dailyAnalysisPost.fiveMinChartImageContentType, dailyAnalysisPost.fiveMinChartImage)">
+                            <img [src]="'data:' + dailyAnalysisPost.fiveMinChartImageContentType + ';base64,' + dailyAnalysisPost.fiveMinChartImage" style="max-width: 100%;" alt="dailyAnalysisPost image"/>
+                        </a>
+                        {{ dailyAnalysisPost.fiveMinChartImageContentType }}, {{ byteSize(dailyAnalysisPost.fiveMinChartImage) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.planForToday">Plan For Today</span></dt>
+                <dd>
+                    <span>{{ dailyAnalysisPost.planForToday }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.highVolBar">High Vol Bar</span></dt>
+                <dd>
+                    <span>{{ dailyAnalysisPost.highVolBar }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.highVolBarLocation">High Vol Bar Location</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.HIGHVOLBARLOCATION.' + dailyAnalysisPost.highVolBarLocation }}">{{ dailyAnalysisPost.highVolBarLocation }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.instrument">Instrument</span></dt>
+                <dd>
+                    <div *ngIf="dailyAnalysisPost.instrument">
+                        <a [routerLink]="['/instrument', dailyAnalysisPost.instrument?.id, 'view']">{{ dailyAnalysisPost.instrument?.ticker }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.dailyAnalysisPost.mt4Account">Mt 4 Account</span></dt>
+                <dd>
+                    <div *ngIf="dailyAnalysisPost.mt4Account">
+                        <a [routerLink]="['/mt-4-account', dailyAnalysisPost.mt4Account?.id, 'view']">{{ dailyAnalysisPost.mt4Account?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/daily-analysis-post', dailyAnalysisPost.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

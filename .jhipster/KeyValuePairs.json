@@ -1,0 +1,29 @@
+{
+  "name": "KeyValuePairs",
+  "fields": [
+    {
+      "fieldName": "keyValueGroup",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "keyValue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "keyValueEntry",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201111112711",
+  "entityTableName": "key_value_pairs",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

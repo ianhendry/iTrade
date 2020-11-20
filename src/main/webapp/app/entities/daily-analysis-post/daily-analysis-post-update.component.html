@@ -1,0 +1,201 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-daily-analysis-post-heading" jhiTranslate="iTradeApp.dailyAnalysisPost.home.createOrEditLabel">Create or edit a Daily Analysis Post</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.postTitle" for="field_postTitle">Post Title</label>
+                    <input type="text" class="form-control" name="postTitle" id="field_postTitle"
+                           formControlName="postTitle"/>
+                    <div *ngIf="editForm.get('postTitle')!.invalid && (editForm.get('postTitle')!.dirty || editForm.get('postTitle')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('postTitle')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.dateAdded" for="field_dateAdded">Date Added</label>
+                    <div class="d-flex">
+                        <input id="field_dateAdded" type="datetime-local" class="form-control" name="dateAdded" formControlName="dateAdded" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('dateAdded')!.invalid && (editForm.get('dateAdded')!.dirty || editForm.get('dateAdded')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dateAdded')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('dateAdded')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.dayOfWeek" for="field_dayOfWeek">Day Of Week</label>
+                    <select class="form-control" name="dayOfWeek" formControlName="dayOfWeek" id="field_dayOfWeek">
+                        <option value="MONDAY">{{ 'iTradeApp.DAYOFWEEK.MONDAY' | translate }}</option>
+                        <option value="TUESDAY">{{ 'iTradeApp.DAYOFWEEK.TUESDAY' | translate }}</option>
+                        <option value="WEDNESDAY">{{ 'iTradeApp.DAYOFWEEK.WEDNESDAY' | translate }}</option>
+                        <option value="THURSDAY">{{ 'iTradeApp.DAYOFWEEK.THURSDAY' | translate }}</option>
+                        <option value="FRIDAY">{{ 'iTradeApp.DAYOFWEEK.FRIDAY' | translate }}</option>
+                        <option value="SATURDAY">{{ 'iTradeApp.DAYOFWEEK.SATURDAY' | translate }}</option>
+                        <option value="SUNDAY">{{ 'iTradeApp.DAYOFWEEK.SUNDAY' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('dayOfWeek')!.invalid && (editForm.get('dayOfWeek')!.dirty || editForm.get('dayOfWeek')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dayOfWeek')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.backgroundVolume" for="field_backgroundVolume">Background Volume</label>
+                    <input type="text" class="form-control" name="backgroundVolume" id="field_backgroundVolume"
+                           formControlName="backgroundVolume"/>
+                    <div *ngIf="editForm.get('backgroundVolume')!.invalid && (editForm.get('backgroundVolume')!.dirty || editForm.get('backgroundVolume')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('backgroundVolume')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.priceAction" for="field_priceAction">Price Action</label>
+                    <input type="text" class="form-control" name="priceAction" id="field_priceAction"
+                           formControlName="priceAction"/>
+                    <div *ngIf="editForm.get('priceAction')!.invalid && (editForm.get('priceAction')!.dirty || editForm.get('priceAction')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('priceAction')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.reasonsToEnter" for="field_reasonsToEnter">Reasons To Enter</label>
+                    <input type="text" class="form-control" name="reasonsToEnter" id="field_reasonsToEnter"
+                           formControlName="reasonsToEnter"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.warningSigns" for="field_warningSigns">Warning Signs</label>
+                    <input type="text" class="form-control" name="warningSigns" id="field_warningSigns"
+                           formControlName="warningSigns"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.dailyChartImage" for="field_dailyChartImage">Daily Chart Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('dailyChartImageContentType')!.value + ';base64,' + editForm.get('dailyChartImage')!.value" style="max-height: 100px;" *ngIf="editForm.get('dailyChartImage')!.value" alt="dailyAnalysisPost image"/>
+                        <div *ngIf="editForm.get('dailyChartImage')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('dailyChartImageContentType')!.value }}, {{ byteSize(editForm.get('dailyChartImage')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('dailyChartImage', 'dailyChartImageContentType', 'file_dailyChartImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_dailyChartImage" (change)="setFileData($event, 'dailyChartImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="dailyChartImage" id="field_dailyChartImage"
+                           formControlName="dailyChartImage"/>
+                    <input type="hidden" class="form-control" name="dailyChartImageContentType" id="field_dailyChartImageContentType"
+                           formControlName="dailyChartImageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.oneHrChartImage" for="field_oneHrChartImage">One Hr Chart Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('oneHrChartImageContentType')!.value + ';base64,' + editForm.get('oneHrChartImage')!.value" style="max-height: 100px;" *ngIf="editForm.get('oneHrChartImage')!.value" alt="dailyAnalysisPost image"/>
+                        <div *ngIf="editForm.get('oneHrChartImage')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('oneHrChartImageContentType')!.value }}, {{ byteSize(editForm.get('oneHrChartImage')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('oneHrChartImage', 'oneHrChartImageContentType', 'file_oneHrChartImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_oneHrChartImage" (change)="setFileData($event, 'oneHrChartImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="oneHrChartImage" id="field_oneHrChartImage"
+                           formControlName="oneHrChartImage"/>
+                    <input type="hidden" class="form-control" name="oneHrChartImageContentType" id="field_oneHrChartImageContentType"
+                           formControlName="oneHrChartImageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.fiveMinChartImage" for="field_fiveMinChartImage">Five Min Chart Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('fiveMinChartImageContentType')!.value + ';base64,' + editForm.get('fiveMinChartImage')!.value" style="max-height: 100px;" *ngIf="editForm.get('fiveMinChartImage')!.value" alt="dailyAnalysisPost image"/>
+                        <div *ngIf="editForm.get('fiveMinChartImage')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('fiveMinChartImageContentType')!.value }}, {{ byteSize(editForm.get('fiveMinChartImage')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('fiveMinChartImage', 'fiveMinChartImageContentType', 'file_fiveMinChartImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_fiveMinChartImage" (change)="setFileData($event, 'fiveMinChartImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="fiveMinChartImage" id="field_fiveMinChartImage"
+                           formControlName="fiveMinChartImage"/>
+                    <input type="hidden" class="form-control" name="fiveMinChartImageContentType" id="field_fiveMinChartImageContentType"
+                           formControlName="fiveMinChartImageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.planForToday" for="field_planForToday">Plan For Today</label>
+                    <input type="text" class="form-control" name="planForToday" id="field_planForToday"
+                           formControlName="planForToday"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.highVolBar" for="field_highVolBar">High Vol Bar</label>
+                    <input type="text" class="form-control" name="highVolBar" id="field_highVolBar"
+                           formControlName="highVolBar"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.highVolBarLocation" for="field_highVolBarLocation">High Vol Bar Location</label>
+                    <select class="form-control" name="highVolBarLocation" formControlName="highVolBarLocation" id="field_highVolBarLocation">
+                        <option value="TOUCHING">{{ 'iTradeApp.HIGHVOLBARLOCATION.TOUCHING' | translate }}</option>
+                        <option value="CROSSING">{{ 'iTradeApp.HIGHVOLBARLOCATION.CROSSING' | translate }}</option>
+                        <option value="DISTANT">{{ 'iTradeApp.HIGHVOLBARLOCATION.DISTANT' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.instrument" for="field_instrument">Instrument</label>
+                    <select class="form-control" id="field_instrument" name="instrument" formControlName="instrument">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="instrumentOption.id === editForm.get('instrument')!.value?.id ? editForm.get('instrument')!.value : instrumentOption" *ngFor="let instrumentOption of instruments; trackBy: trackById">{{ instrumentOption.ticker }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.dailyAnalysisPost.mt4Account" for="field_mt4Account">Mt 4 Account</label>
+                    <select class="form-control" id="field_mt4Account" name="mt4Account" formControlName="mt4Account">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="mt4AccountOption.id === editForm.get('mt4Account')!.value?.id ? editForm.get('mt4Account')!.value : mt4AccountOption" *ngFor="let mt4AccountOption of mt4accounts; trackBy: trackById">{{ mt4AccountOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

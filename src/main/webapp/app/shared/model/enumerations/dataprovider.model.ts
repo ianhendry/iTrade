@@ -1,0 +1,7 @@
+export const enum DATAPROVIDER {
+  FXPRO = 'FXPRO',
+
+  QUANDLL = 'QUANDLL',
+
+  TRADENAVIGATOR = 'TRADENAVIGATOR',
+}

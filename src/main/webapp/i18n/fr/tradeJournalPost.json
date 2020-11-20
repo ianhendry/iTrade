@@ -1,0 +1,31 @@
+{
+  "iTradeApp": {
+    "tradeJournalPost": {
+      "home": {
+        "title": "TradeJournalPosts",
+        "createLabel": "Créer un nouveau Trade Journal Post",
+        "createOrEditLabel": "Créer ou éditer un Trade Journal Post",
+        "notFound": "Aucun Trade Journal Post trouvé"
+      },
+      "created": "Un nouveau Trade Journal Post a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Trade Journal Post avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Trade Journal Post avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Trade Journal Post {{ id }} ?"
+      },
+      "detail": {
+        "title": "Trade Journal Post"
+      },
+      "postTitle": "Post Title",
+      "postBody": "Post Body",
+      "dateAdded": "Date Added",
+      "dateApproved": "Date Approved",
+      "media1": "Media 1",
+      "media2": "Media 2",
+      "media3": "Media 3",
+      "media4": "Media 4",
+      "comment": "Comment",
+      "videoPost": "Video Post"
+    }
+  }
+}

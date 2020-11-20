@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="iTradeApp.keyValuePairs.home.title">Key Value Pairs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-key-value-pairs" [routerLink]="['/key-value-pairs/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="iTradeApp.keyValuePairs.home.createLabel">
+            Create a new Key Value Pairs
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="keyValuePairs?.length === 0">
+        <span jhiTranslate="iTradeApp.keyValuePairs.home.notFound">No keyValuePairs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="keyValuePairs && keyValuePairs.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="keyValueGroup"><span jhiTranslate="iTradeApp.keyValuePairs.keyValueGroup">Key Value Group</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="keyValue"><span jhiTranslate="iTradeApp.keyValuePairs.keyValue">Key Value</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="keyValueEntry"><span jhiTranslate="iTradeApp.keyValuePairs.keyValueEntry">Key Value Entry</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let keyValuePairs of keyValuePairs ;trackBy: trackId">
+                    <td><a [routerLink]="['/key-value-pairs', keyValuePairs.id, 'view']">{{ keyValuePairs.id }}</a></td>
+                    <td>{{ keyValuePairs.keyValueGroup }}</td>
+                    <td>{{ keyValuePairs.keyValue }}</td>
+                    <td>{{ keyValuePairs.keyValueEntry }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/key-value-pairs', keyValuePairs.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/key-value-pairs', keyValuePairs.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(keyValuePairs)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

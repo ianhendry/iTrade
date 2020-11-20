@@ -1,0 +1,9 @@
+export const enum BROKER {
+  FXPRO = 'FXPRO',
+
+  ALPARI = 'ALPARI',
+
+  THINKMARKETS = 'THINKMARKETS',
+
+  PEPPERSTONE = 'PEPPERSTONE',
+}

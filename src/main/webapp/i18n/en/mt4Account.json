@@ -1,0 +1,30 @@
+{
+  "iTradeApp": {
+    "mt4Account": {
+      "home": {
+        "title": "Mt 4 Accounts",
+        "createLabel": "Create a new Mt 4 Account",
+        "createOrEditLabel": "Create or edit a Mt 4 Account",
+        "notFound": "No Mt 4 Accounts found"
+      },
+      "created": "A new Mt 4 Account is created with identifier {{ param }}",
+      "updated": "A Mt 4 Account is updated with identifier {{ param }}",
+      "deleted": "A Mt 4 Account is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mt 4 Account {{ id }}?"
+      },
+      "detail": {
+        "title": "Mt 4 Account"
+      },
+      "accountType": "Account Type",
+      "accountBroker": "Account Broker",
+      "accountLogin": "Account Login",
+      "accountPassword": "Account Password",
+      "accountActive": "Account Active",
+      "accountCloseDate": "Account Close Date",
+      "dailyAnalysisPost": "Daily Analysis Post",
+      "mt4Trade": "Mt 4 Trade",
+      "watchlist": "Watchlist"
+    }
+  }
+}

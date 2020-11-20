@@ -1,0 +1,10 @@
+{
+  "iTradeApp": {
+    "HIGHVOLBARLOCATION": {
+      "null": "",
+      "TOUCHING": "TOUCHING",
+      "CROSSING": "CROSSING",
+      "DISTANT": "DISTANT"
+    }
+  }
+}

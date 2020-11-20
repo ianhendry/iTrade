@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="iTradeApp.videoPost.home.title">Video Posts</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-video-post" [routerLink]="['/video-post/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="iTradeApp.videoPost.home.createLabel">
+            Create a new Video Post
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="videoPosts?.length === 0">
+        <span jhiTranslate="iTradeApp.videoPost.home.notFound">No videoPosts found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="videoPosts && videoPosts.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="postTitle"><span jhiTranslate="iTradeApp.videoPost.postTitle">Post Title</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="postBody"><span jhiTranslate="iTradeApp.videoPost.postBody">Post Body</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateAdded"><span jhiTranslate="iTradeApp.videoPost.dateAdded">Date Added</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateApproved"><span jhiTranslate="iTradeApp.videoPost.dateApproved">Date Approved</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="media"><span jhiTranslate="iTradeApp.videoPost.media">Media</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let videoPost of videoPosts ;trackBy: trackId">
+                    <td><a [routerLink]="['/video-post', videoPost.id, 'view']">{{ videoPost.id }}</a></td>
+                    <td>{{ videoPost.postTitle }}</td>
+                    <td>{{ videoPost.postBody }}</td>
+                    <td>{{ videoPost.dateAdded | date:'medium' }}</td>
+                    <td>{{ videoPost.dateApproved | date:'mediumDate' }}</td>
+                    <td>
+                        <a *ngIf="videoPost.media" (click)="openFile(videoPost.mediaContentType, videoPost.media)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="videoPost.media">{{ videoPost.mediaContentType }}, {{ byteSize(videoPost.media) }}</span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/video-post', videoPost.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/video-post', videoPost.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(videoPost)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{
+  "name": "Comment",
+  "fields": [
+    {
+      "fieldName": "commentTitle",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "commentBody",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "commentMedia",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateApproved",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201111113711",
+  "javadoc": "not an ignored comment",
+  "entityTableName": "comment",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

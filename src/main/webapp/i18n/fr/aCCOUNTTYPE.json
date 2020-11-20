@@ -1,0 +1,9 @@
+{
+  "iTradeApp": {
+    "ACCOUNTTYPE": {
+      "null": "",
+      "REAL": "REAL",
+      "DEMO": "DEMO"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-mt-4-account-heading" jhiTranslate="iTradeApp.mt4Account.home.createOrEditLabel">Create or edit a Mt 4 Account</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.mt4Account.accountType" for="field_accountType">Account Type</label>
+                    <select class="form-control" name="accountType" formControlName="accountType" id="field_accountType">
+                        <option value="REAL">{{ 'iTradeApp.ACCOUNTTYPE.REAL' | translate }}</option>
+                        <option value="DEMO">{{ 'iTradeApp.ACCOUNTTYPE.DEMO' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.mt4Account.accountBroker" for="field_accountBroker">Account Broker</label>
+                    <select class="form-control" name="accountBroker" formControlName="accountBroker" id="field_accountBroker">
+                        <option value="FXPRO">{{ 'iTradeApp.BROKER.FXPRO' | translate }}</option>
+                        <option value="ALPARI">{{ 'iTradeApp.BROKER.ALPARI' | translate }}</option>
+                        <option value="THINKMARKETS">{{ 'iTradeApp.BROKER.THINKMARKETS' | translate }}</option>
+                        <option value="PEPPERSTONE">{{ 'iTradeApp.BROKER.PEPPERSTONE' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.mt4Account.accountLogin" for="field_accountLogin">Account Login</label>
+                    <input type="text" class="form-control" name="accountLogin" id="field_accountLogin"
+                           formControlName="accountLogin"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.mt4Account.accountPassword" for="field_accountPassword">Account Password</label>
+                    <input type="text" class="form-control" name="accountPassword" id="field_accountPassword"
+                           formControlName="accountPassword"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.mt4Account.accountActive" for="field_accountActive">Account Active</label>
+                    <input type="checkbox" class="form-control" name="accountActive" id="field_accountActive"
+                           formControlName="accountActive"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.mt4Account.accountCloseDate" for="field_accountCloseDate">Account Close Date</label>
+                    <div class="input-group">
+                        <input id="field_accountCloseDate" type="text" class="form-control" name="accountCloseDate" ngbDatepicker #accountCloseDateDp="ngbDatepicker" formControlName="accountCloseDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="accountCloseDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.mt4Account.mt4Trade" for="field_mt4Trade">Mt 4 Trade</label>
+                    <select class="form-control" id="field_mt4Trade" name="mt4Trade" formControlName="mt4Trade">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="mt4TradeOption.id === editForm.get('mt4Trade')!.value?.id ? editForm.get('mt4Trade')!.value : mt4TradeOption" *ngFor="let mt4TradeOption of mt4trades; trackBy: trackById">{{ mt4TradeOption.ticket }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.mt4Account.watchlist" for="field_watchlist">Watchlist</label>
+                    <select class="form-control" id="field_watchlist" name="watchlist" formControlName="watchlist">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="watchlistOption.id === editForm.get('watchlist')!.value?.id ? editForm.get('watchlist')!.value : watchlistOption" *ngFor="let watchlistOption of watchlists; trackBy: trackById">{{ watchlistOption.watchlistName }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

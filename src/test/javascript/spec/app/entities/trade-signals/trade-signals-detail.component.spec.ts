@@ -1,0 +1,69 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { JhiDataUtils } from 'ng-jhipster';
+
+import { ITradeTestModule } from '../../../test.module';
+import { TradeSignalsDetailComponent } from 'app/entities/trade-signals/trade-signals-detail.component';
+import { TradeSignals } from 'app/shared/model/trade-signals.model';
+
+describe('Component Tests', () => {
+  describe('TradeSignals Management Detail Component', () => {
+    let comp: TradeSignalsDetailComponent;
+    let fixture: ComponentFixture<TradeSignalsDetailComponent>;
+    let dataUtils: JhiDataUtils;
+    const route = ({ data: of({ tradeSignals: new TradeSignals(123) }) } as any) as ActivatedRoute;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [ITradeTestModule],
+        declarations: [TradeSignalsDetailComponent],
+        providers: [{ provide: ActivatedRoute, useValue: route }],
+      })
+        .overrideTemplate(TradeSignalsDetailComponent, '')
+        .compileComponents();
+      fixture = TestBed.createComponent(TradeSignalsDetailComponent);
+      comp = fixture.componentInstance;
+      dataUtils = fixture.debugElement.injector.get(JhiDataUtils);
+    });
+
+    describe('OnInit', () => {
+      it('Should load tradeSignals on init', () => {
+        // WHEN
+        comp.ngOnInit();
+
+        // THEN
+        expect(comp.tradeSignals).toEqual(jasmine.objectContaining({ id: 123 }));
+      });
+    });
+
+    describe('byteSize', () => {
+      it('Should call byteSize from JhiDataUtils', () => {
+        // GIVEN
+        spyOn(dataUtils, 'byteSize');
+        const fakeBase64 = 'fake base64';
+
+        // WHEN
+        comp.byteSize(fakeBase64);
+
+        // THEN
+        expect(dataUtils.byteSize).toBeCalledWith(fakeBase64);
+      });
+    });
+
+    describe('openFile', () => {
+      it('Should call openFile from JhiDataUtils', () => {
+        // GIVEN
+        spyOn(dataUtils, 'openFile');
+        const fakeContentType = 'fake content type';
+        const fakeBase64 = 'fake base64';
+
+        // WHEN
+        comp.openFile(fakeContentType, fakeBase64);
+
+        // THEN
+        expect(dataUtils.openFile).toBeCalledWith(fakeContentType, fakeBase64);
+      });
+    });
+  });
+});

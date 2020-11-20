@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-price-data-history-heading" jhiTranslate="iTradeApp.priceDataHistory.home.createOrEditLabel">Create or edit a Price Data History</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.priceTimeframe" for="field_priceTimeframe">Price Timeframe</label>
+                    <select class="form-control" name="priceTimeframe" formControlName="priceTimeframe" id="field_priceTimeframe">
+                        <option value="M1">{{ 'iTradeApp.TIMEFRAME.M1' | translate }}</option>
+                        <option value="M5">{{ 'iTradeApp.TIMEFRAME.M5' | translate }}</option>
+                        <option value="M15">{{ 'iTradeApp.TIMEFRAME.M15' | translate }}</option>
+                        <option value="M30">{{ 'iTradeApp.TIMEFRAME.M30' | translate }}</option>
+                        <option value="H1">{{ 'iTradeApp.TIMEFRAME.H1' | translate }}</option>
+                        <option value="H4">{{ 'iTradeApp.TIMEFRAME.H4' | translate }}</option>
+                        <option value="D1">{{ 'iTradeApp.TIMEFRAME.D1' | translate }}</option>
+                        <option value="W1">{{ 'iTradeApp.TIMEFRAME.W1' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('priceTimeframe')!.invalid && (editForm.get('priceTimeframe')!.dirty || editForm.get('priceTimeframe')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('priceTimeframe')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.priceDate" for="field_priceDate">Price Date</label>
+                    <div class="input-group">
+                        <input id="field_priceDate" type="text" class="form-control" name="priceDate" ngbDatepicker #priceDateDp="ngbDatepicker" formControlName="priceDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="priceDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.priceTime" for="field_priceTime">Price Time</label>
+                    <div class="d-flex">
+                        <input id="field_priceTime" type="datetime-local" class="form-control" name="priceTime" formControlName="priceTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.priceOpen" for="field_priceOpen">Price Open</label>
+                    <input type="number" class="form-control" name="priceOpen" id="field_priceOpen"
+                           formControlName="priceOpen"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.priceHigh" for="field_priceHigh">Price High</label>
+                    <input type="number" class="form-control" name="priceHigh" id="field_priceHigh"
+                           formControlName="priceHigh"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.priceLow" for="field_priceLow">Price Low</label>
+                    <input type="number" class="form-control" name="priceLow" id="field_priceLow"
+                           formControlName="priceLow"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.priceClose" for="field_priceClose">Price Close</label>
+                    <input type="number" class="form-control" name="priceClose" id="field_priceClose"
+                           formControlName="priceClose"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.priceVolume" for="field_priceVolume">Price Volume</label>
+                    <input type="number" class="form-control" name="priceVolume" id="field_priceVolume"
+                           formControlName="priceVolume"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.priceDataHistory.instrument" for="field_instrument">Instrument</label>
+                    <select class="form-control" id="field_instrument" name="instrument" formControlName="instrument">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="instrumentOption.id === editForm.get('instrument')!.value?.id ? editForm.get('instrument')!.value : instrumentOption" *ngFor="let instrumentOption of instruments; trackBy: trackById">{{ instrumentOption.ticker }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

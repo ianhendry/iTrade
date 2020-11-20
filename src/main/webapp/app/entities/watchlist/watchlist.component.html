@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="iTradeApp.watchlist.home.title">Watchlists</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-watchlist" [routerLink]="['/watchlist/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="iTradeApp.watchlist.home.createLabel">
+            Create a new Watchlist
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="watchlists?.length === 0">
+        <span jhiTranslate="iTradeApp.watchlist.home.notFound">No watchlists found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="watchlists && watchlists.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="watchlistName"><span jhiTranslate="iTradeApp.watchlist.watchlistName">Watchlist Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="watchlistDescription"><span jhiTranslate="iTradeApp.watchlist.watchlistDescription">Watchlist Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateCreated"><span jhiTranslate="iTradeApp.watchlist.dateCreated">Date Created</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateInactive"><span jhiTranslate="iTradeApp.watchlist.dateInactive">Date Inactive</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="watchlistInactive"><span jhiTranslate="iTradeApp.watchlist.watchlistInactive">Watchlist Inactive</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let watchlist of watchlists ;trackBy: trackId">
+                    <td><a [routerLink]="['/watchlist', watchlist.id, 'view']">{{ watchlist.id }}</a></td>
+                    <td>{{ watchlist.watchlistName }}</td>
+                    <td>{{ watchlist.watchlistDescription }}</td>
+                    <td>{{ watchlist.dateCreated | date:'mediumDate' }}</td>
+                    <td>{{ watchlist.dateInactive | date:'mediumDate' }}</td>
+                    <td>{{ watchlist.watchlistInactive }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/watchlist', watchlist.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/watchlist', watchlist.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(watchlist)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

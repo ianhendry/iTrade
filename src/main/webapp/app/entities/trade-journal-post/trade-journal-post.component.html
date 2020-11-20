@@ -1,0 +1,107 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="iTradeApp.tradeJournalPost.home.title">Trade Journal Posts</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-trade-journal-post" [routerLink]="['/trade-journal-post/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="iTradeApp.tradeJournalPost.home.createLabel">
+            Create a new Trade Journal Post
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tradeJournalPosts?.length === 0">
+        <span jhiTranslate="iTradeApp.tradeJournalPost.home.notFound">No tradeJournalPosts found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tradeJournalPosts && tradeJournalPosts.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="postTitle"><span jhiTranslate="iTradeApp.tradeJournalPost.postTitle">Post Title</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="postBody"><span jhiTranslate="iTradeApp.tradeJournalPost.postBody">Post Body</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateAdded"><span jhiTranslate="iTradeApp.tradeJournalPost.dateAdded">Date Added</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateApproved"><span jhiTranslate="iTradeApp.tradeJournalPost.dateApproved">Date Approved</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="media1"><span jhiTranslate="iTradeApp.tradeJournalPost.media1">Media 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="media2"><span jhiTranslate="iTradeApp.tradeJournalPost.media2">Media 2</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="media3"><span jhiTranslate="iTradeApp.tradeJournalPost.media3">Media 3</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="media4"><span jhiTranslate="iTradeApp.tradeJournalPost.media4">Media 4</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="comment.commentTitle"><span jhiTranslate="iTradeApp.tradeJournalPost.comment">Comment</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="videoPost.postTitle"><span jhiTranslate="iTradeApp.tradeJournalPost.videoPost">Video Post</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let tradeJournalPost of tradeJournalPosts ;trackBy: trackId">
+                    <td><a [routerLink]="['/trade-journal-post', tradeJournalPost.id, 'view']">{{ tradeJournalPost.id }}</a></td>
+                    <td>{{ tradeJournalPost.postTitle }}</td>
+                    <td>{{ tradeJournalPost.postBody }}</td>
+                    <td>{{ tradeJournalPost.dateAdded | date:'mediumDate' }}</td>
+                    <td>{{ tradeJournalPost.dateApproved | date:'mediumDate' }}</td>
+                    <td>
+                        <a *ngIf="tradeJournalPost.media1" (click)="openFile(tradeJournalPost.media1ContentType, tradeJournalPost.media1)">
+                            <img [src]="'data:' + tradeJournalPost.media1ContentType + ';base64,' + tradeJournalPost.media1" style="max-height: 30px;" alt="tradeJournalPost image"/>
+                        </a>
+                        <span *ngIf="tradeJournalPost.media1">{{ tradeJournalPost.media1ContentType }}, {{ byteSize(tradeJournalPost.media1) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="tradeJournalPost.media2" (click)="openFile(tradeJournalPost.media2ContentType, tradeJournalPost.media2)">
+                            <img [src]="'data:' + tradeJournalPost.media2ContentType + ';base64,' + tradeJournalPost.media2" style="max-height: 30px;" alt="tradeJournalPost image"/>
+                        </a>
+                        <span *ngIf="tradeJournalPost.media2">{{ tradeJournalPost.media2ContentType }}, {{ byteSize(tradeJournalPost.media2) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="tradeJournalPost.media3" (click)="openFile(tradeJournalPost.media3ContentType, tradeJournalPost.media3)">
+                            <img [src]="'data:' + tradeJournalPost.media3ContentType + ';base64,' + tradeJournalPost.media3" style="max-height: 30px;" alt="tradeJournalPost image"/>
+                        </a>
+                        <span *ngIf="tradeJournalPost.media3">{{ tradeJournalPost.media3ContentType }}, {{ byteSize(tradeJournalPost.media3) }}</span>
+                    </td>
+                    <td>
+                        <a *ngIf="tradeJournalPost.media4" (click)="openFile(tradeJournalPost.media4ContentType, tradeJournalPost.media4)">
+                            <img [src]="'data:' + tradeJournalPost.media4ContentType + ';base64,' + tradeJournalPost.media4" style="max-height: 30px;" alt="tradeJournalPost image"/>
+                        </a>
+                        <span *ngIf="tradeJournalPost.media4">{{ tradeJournalPost.media4ContentType }}, {{ byteSize(tradeJournalPost.media4) }}</span>
+                    </td>
+                    <td>
+                        <div *ngIf="tradeJournalPost.comment">
+                            <a [routerLink]="['/comment', tradeJournalPost.comment?.id, 'view']" >{{ tradeJournalPost.comment?.commentTitle }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="tradeJournalPost.videoPost">
+                            <a [routerLink]="['/video-post', tradeJournalPost.videoPost?.id, 'view']" >{{ tradeJournalPost.videoPost?.postTitle }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/trade-journal-post', tradeJournalPost.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/trade-journal-post', tradeJournalPost.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(tradeJournalPost)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

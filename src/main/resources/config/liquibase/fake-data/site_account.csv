@@ -1,0 +1,11 @@
+id;account_email;account_name;account_real;account_balance;account_open_date;account_close_date
+1;monitoring;Investment Account;true;23826;2020-11-10;2020-11-10
+2;Plastic;Home Loan Account;false;50233;2020-11-11;2020-11-11
+3;web-readiness markets cross-media;Investment Account;true;81427;2020-11-11;2020-11-10
+4;Rand Loti Bacon Applications;Home Loan Account;true;68167;2020-11-10;2020-11-10
+5;Tactics Liaison;Auto Loan Account;true;87694;2020-11-11;2020-11-10
+6;Arkansas;Personal Loan Account;false;65874;2020-11-10;2020-11-10
+7;support;Investment Account;true;77474;2020-11-10;2020-11-11
+8;Ergonomic Granite Table;Money Market Account;false;24603;2020-11-10;2020-11-11
+9;directional Ergonomic hack;Checking Account;true;66902;2020-11-11;2020-11-10
+10;Steel;Credit Card Account;false;14840;2020-11-10;2020-11-10

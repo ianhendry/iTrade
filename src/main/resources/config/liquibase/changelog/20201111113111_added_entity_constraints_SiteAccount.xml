@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity SiteAccount.
+    -->
+    <changeSet id="20201111113111-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="site_account"
+                                 constraintName="fk_site_account_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="mt4account_id"
+                                 baseTableName="site_account"
+                                 constraintName="fk_site_account_mt4account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mt_4_account"/>
+
+    </changeSet>
+</databaseChangeLog>

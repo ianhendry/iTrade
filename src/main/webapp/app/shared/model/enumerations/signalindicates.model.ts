@@ -1,0 +1,5 @@
+export const enum SIGNALINDICATES {
+  STRENGTH = 'STRENGTH',
+
+  WEAKNESS = 'WEAKNESS',
+}

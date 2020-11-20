@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="mt4Account">
+            <h2><span jhiTranslate="iTradeApp.mt4Account.detail.title">Mt 4 Account</span> {{ mt4Account.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.mt4Account.accountType">Account Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.ACCOUNTTYPE.' + mt4Account.accountType }}">{{ mt4Account.accountType }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.mt4Account.accountBroker">Account Broker</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.BROKER.' + mt4Account.accountBroker }}">{{ mt4Account.accountBroker }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.mt4Account.accountLogin">Account Login</span></dt>
+                <dd>
+                    <span>{{ mt4Account.accountLogin }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.mt4Account.accountPassword">Account Password</span></dt>
+                <dd>
+                    <span>{{ mt4Account.accountPassword }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.mt4Account.accountActive">Account Active</span></dt>
+                <dd>
+                    <span>{{ mt4Account.accountActive }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.mt4Account.accountCloseDate">Account Close Date</span></dt>
+                <dd>
+                    <span>{{ mt4Account.accountCloseDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.mt4Account.mt4Trade">Mt 4 Trade</span></dt>
+                <dd>
+                    <div *ngIf="mt4Account.mt4Trade">
+                        <a [routerLink]="['/mt-4-trade', mt4Account.mt4Trade?.id, 'view']">{{ mt4Account.mt4Trade?.ticket }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.mt4Account.watchlist">Watchlist</span></dt>
+                <dd>
+                    <div *ngIf="mt4Account.watchlist">
+                        <a [routerLink]="['/watchlist', mt4Account.watchlist?.id, 'view']">{{ mt4Account.watchlist?.watchlistName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/mt-4-account', mt4Account.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

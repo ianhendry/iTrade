@@ -1,0 +1,68 @@
+{
+  "name": "Instrument",
+  "fields": [
+    {
+      "fieldName": "dataProvider",
+      "fieldType": "DATAPROVIDER",
+      "fieldValues": "FXPRO,QUANDLL,TRADENAVIGATOR"
+    },
+    {
+      "fieldName": "ticker",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "exchange",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataFrom",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateInactive",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "watchlist",
+      "otherEntityRelationshipName": "intrument",
+      "relationshipName": "watchlist",
+      "otherEntityField": "id",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "signalService",
+      "otherEntityRelationshipName": "intrument",
+      "relationshipName": "signalService",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201111113911",
+  "entityTableName": "instrument",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

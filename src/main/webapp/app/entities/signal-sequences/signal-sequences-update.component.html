@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-signal-sequences-heading" jhiTranslate="iTradeApp.signalSequences.home.createOrEditLabel">Create or edit a Signal Sequences</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalSequences.sequenceName" for="field_sequenceName">Sequence Name</label>
+                    <input type="text" class="form-control" name="sequenceName" id="field_sequenceName"
+                           formControlName="sequenceName"/>
+                    <div *ngIf="editForm.get('sequenceName')!.invalid && (editForm.get('sequenceName')!.dirty || editForm.get('sequenceName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('sequenceName')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalSequences.sequenceIdentifier" for="field_sequenceIdentifier">Sequence Identifier</label>
+                    <input type="text" class="form-control" name="sequenceIdentifier" id="field_sequenceIdentifier"
+                           formControlName="sequenceIdentifier"/>
+                    <div *ngIf="editForm.get('sequenceIdentifier')!.invalid && (editForm.get('sequenceIdentifier')!.dirty || editForm.get('sequenceIdentifier')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('sequenceIdentifier')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalSequences.sequenceDescription" for="field_sequenceDescription">Sequence Description</label>
+                    <textarea class="form-control" name="sequenceDescription" id="field_sequenceDescription"
+                              formControlName="sequenceDescription"></textarea>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

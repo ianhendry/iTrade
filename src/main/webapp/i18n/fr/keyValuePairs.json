@@ -1,0 +1,24 @@
+{
+  "iTradeApp": {
+    "keyValuePairs": {
+      "home": {
+        "title": "KeyValuePairs",
+        "createLabel": "Créer un nouveau Key Value Pairs",
+        "createOrEditLabel": "Créer ou éditer un Key Value Pairs",
+        "notFound": "Aucun Key Value Pairs trouvé"
+      },
+      "created": "Un nouveau Key Value Pairs a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Key Value Pairs avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Key Value Pairs avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Key Value Pairs {{ id }} ?"
+      },
+      "detail": {
+        "title": "Key Value Pairs"
+      },
+      "keyValueGroup": "Key Value Group",
+      "keyValue": "Key Value",
+      "keyValueEntry": "Key Value Entry"
+    }
+  }
+}

@@ -1,0 +1,257 @@
+/**
+ * JHipster JDL model for tradeplus
+ */
+
+application {
+  config {
+    packageName com.gracefl.tradeplus
+    baseName iTrade
+    applicationType monolith
+    databaseType sql
+  }
+  entities *
+}
+
+// ==============================
+// Entity definitions starts here
+// ==============================
+enum ACCOUNTTYPE {
+	REAL, DEMO
+}
+
+enum BROKER {
+	FXPRO, ALPARI, THINKMARKETS, PEPPERSTONE
+}
+
+enum DATAPROVIDER {
+  FXPRO, QUANDLL, TRADENAVIGATOR
+}
+
+enum DAYOFWEEK {
+  MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+
+enum HIGHVOLBARLOCATION {
+  TOUCHING, CROSSING, DISTANT
+}
+
+enum SIGNALBARSIZE {
+	SMALL, MEDIUM, LARGE, VERYLARGE, GIGANTIC
+}
+
+enum TIMEFRAME {
+	M1, M5, M15, M30, H1, H4, D1, W1, M1 
+}
+
+enum SIGNALINDICATES {
+	STRENGTH, WEAKNESS
+}
+
+enum BARCLOSE {
+	MIDDLE, TOP, LOW, MIDTOP, MIDLOW 
+}
+
+entity PriceDataHistory {
+	priceTimeframe TIMEFRAME required
+	priceDate LocalDate
+	priceTime ZonedDateTime
+	priceOpen Double
+	priceHigh Double
+	priceLow Double
+	priceClose Double
+	priceVolume Double
+}
+
+entity KeyValuePairs {
+	keyValueGroup String	
+	keyValue String
+	keyValueEntry String
+}
+
+/** used to store the available signals sequences that lead to entry reasons */
+entity SignalSequences {
+	sequenceName String required
+	sequenceIdentifier String required
+	sequenceDescription TextBlob
+}
+
+/** used to store the available signals - strength indications & weakness indications */
+entity TradeSignals {
+	name String required
+	note String
+	numberOfBars Integer
+	signalIndicates SIGNALINDICATES
+	description TextBlob
+	background TextBlob
+	actionToTake TextBlob
+	sequenceNumber Integer
+}
+
+/** used to persist when a signal is found */
+entity SignalService {
+	alertDate LocalDate required
+    alertTime ZonedDateTime
+    alertText String
+    alertDescription TextBlob
+    signalIndicates SIGNALINDICATES
+    image ImageBlob
+    timeframe TIMEFRAME required
+    alertPrice Double
+    isSequencePresent Boolean
+    barVolume BigDecimal
+    barSize SIGNALBARSIZE
+    barClose BARCLOSE
+    isPublished Boolean
+}
+
+entity SiteAccount {
+	accountEmail String
+    accountName String
+    accountReal Boolean
+    accountBalance BigDecimal
+    accountOpenDate LocalDate
+    accountCloseDate LocalDate
+}
+
+entity Mt4Account {
+	accountType ACCOUNTTYPE
+    accountBroker BROKER
+    accountLogin String
+    accountPassword String
+    accountActive Boolean
+    accountCloseDate LocalDate
+}
+
+entity ShippingDetails {
+    userName String
+    email String
+  	name String
+  	address1 String
+  	address2 String
+  	address3 String
+  	address4 String
+  	address5 String
+  	dateAdded LocalDate
+  	dateInactive LocalDate
+  	userPicture ImageBlob
+}
+
+entity TradeJournalPost {
+	postTitle String required
+    postBody String
+    dateAdded LocalDate required
+    dateApproved LocalDate
+    media1 ImageBlob
+    media2 ImageBlob
+    media3 ImageBlob
+    media4 ImageBlob
+}
+
+entity DailyAnalysisPost {
+	postTitle String required
+    dateAdded ZonedDateTime required
+    dayOfWeek DAYOFWEEK required
+    backgroundVolume String required
+    priceAction String required
+    reasonsToEnter String
+    warningSigns String
+    dailyChartImage ImageBlob
+    oneHrChartImage ImageBlob
+    fiveMinChartImage ImageBlob
+    planForToday String
+    highVolBar String
+    highVolBarLocation HIGHVOLBARLOCATION
+}
+
+entity VideoPost {
+	postTitle String required
+    postBody String
+    dateAdded ZonedDateTime required
+    dateApproved LocalDate
+    media AnyBlob
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Comment {
+	commentTitle String required
+  	commentBody String
+  	commentMedia ImageBlob
+  	dateAdded LocalDate required
+	dateApproved LocalDate
+}
+
+entity Watchlist {
+    watchlistName String required
+    watchlistDescription String
+    dateCreated LocalDate required
+    dateInactive LocalDate
+    watchlistInactive Boolean
+}
+
+entity Instrument {
+  dataProvider DATAPROVIDER
+  ticker String required
+  exchange String
+  description String
+  dataFrom LocalDate
+  isActive Boolean
+  dateAdded LocalDate
+  dateInactive LocalDate
+}
+
+entity Mt4Trade {
+	ticket BigDecimal required
+    openTime ZonedDateTime
+    directionType String
+    positionSize Double
+    openPrice Double
+    stopLossPrice Double
+    takeProfitPrice Double
+    closeTime ZonedDateTime
+    closePrice Double
+    commission Double
+    taxes Double
+    swap Double
+    profit Double
+}
+
+relationship ManyToOne {
+	Mt4Account{mt4Trade(ticket)} to Mt4Trade
+   	ShippingDetails{user(login)} to User
+   	SiteAccount{user(login)} to User
+   	SiteAccount{mt4Account(accountLogin)} to Mt4Account
+   	Mt4Account{watchlist(watchlistName)} to Watchlist
+    TradeJournalPost{comment(commentTitle)} to Comment
+    TradeJournalPost{videoPost(postTitle)} to VideoPost
+    SignalService{tradeSignals(name)} to TradeSignals
+    PriceDataHistory{instrument(ticker)} to Instrument
+    TradeSignals{signalsSequences(sequenceIdentifier)} to SignalSequences
+}
+
+relationship OneToMany {
+	Mt4Account{dailyAnalysisPost(postTitle)} to DailyAnalysisPost{mt4Account}
+	PriceDataHistory to SignalService
+}
+relationship ManyToMany {
+	Watchlist{intrument(ticker)} to Instrument{watchlist}
+	SignalService{intrument(ticker)} to Instrument{signalService}
+}
+
+relationship OneToOne {
+	Mt4Trade{tradeJournalPost(postTitle)} to TradeJournalPost
+    Mt4Trade{instrument(ticker)} to Instrument
+    DailyAnalysisPost{instrument(ticker)} to Instrument
+}
+
+// =======
+// Options
+// =======
+
+// Set pagination options
+paginate Watchlist, Instrument, DailyAnalysisPost, TradeJournalPost, VideoPost, Comment, KeyValuePairs with infinite-scroll
+paginate Mt4Trade, SiteAccount, SignalService, PriceDataHistory, TradeSignals, SiteAccount, Mt4Account, ShippingDetails, SignalSequences, TradeSignals with pagination
+
+// Set service options to all 
+service all with serviceImpl
+

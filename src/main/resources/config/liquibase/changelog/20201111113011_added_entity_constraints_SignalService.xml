@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity SignalService.
+    -->
+    <changeSet id="20201111113011-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="trade_signals_id"
+                                 baseTableName="signal_service"
+                                 constraintName="fk_signal_service_trade_signals_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="trade_signals"/>
+
+        <addForeignKeyConstraint baseColumnNames="signal_service_id"
+                                 baseTableName="signal_service_intrument"
+                                 constraintName="fk_signal_service_intrument_signal_service_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="signal_service"/>
+
+        <addForeignKeyConstraint baseColumnNames="intrument_id"
+                                 baseTableName="signal_service_intrument"
+                                 constraintName="fk_signal_service_intrument_intrument_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="instrument"/>
+        
+        <addForeignKeyConstraint baseColumnNames="price_data_history_id"
+                                 baseTableName="signal_service"
+                                 constraintName="fk_signal_service_price_data_history_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="price_data_history"/>
+
+    </changeSet>
+</databaseChangeLog>

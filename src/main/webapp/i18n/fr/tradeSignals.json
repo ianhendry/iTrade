@@ -1,0 +1,30 @@
+{
+  "iTradeApp": {
+    "tradeSignals": {
+      "home": {
+        "title": "TradeSignals",
+        "createLabel": "Créer un nouveau Trade Signals",
+        "createOrEditLabel": "Créer ou éditer un Trade Signals",
+        "notFound": "Aucun Trade Signals trouvé"
+      },
+      "created": "Un nouveau Trade Signals a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Trade Signals avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Trade Signals avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Trade Signals {{ id }} ?"
+      },
+      "detail": {
+        "title": "Trade Signals"
+      },
+      "name": "Name",
+      "note": "Note",
+      "numberOfBars": "Number Of Bars",
+      "signalIndicates": "Signal Indicates",
+      "description": "Description",
+      "background": "Background",
+      "actionToTake": "Action To Take",
+      "sequenceNumber": "Sequence Number",
+      "signalsSequences": "Signals Sequences"
+    }
+  }
+}

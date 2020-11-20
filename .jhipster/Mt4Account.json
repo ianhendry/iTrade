@@ -1,0 +1,64 @@
+{
+  "name": "Mt4Account",
+  "fields": [
+    {
+      "fieldName": "accountType",
+      "fieldType": "ACCOUNTTYPE",
+      "fieldValues": "REAL,DEMO"
+    },
+    {
+      "fieldName": "accountBroker",
+      "fieldType": "BROKER",
+      "fieldValues": "FXPRO,ALPARI,THINKMARKETS,PEPPERSTONE"
+    },
+    {
+      "fieldName": "accountLogin",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountPassword",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountActive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "accountCloseDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "dailyAnalysisPost",
+      "otherEntityRelationshipName": "mt4Account",
+      "relationshipName": "dailyAnalysisPost"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "mt4Trade",
+      "otherEntityRelationshipName": "mt4Account",
+      "relationshipName": "mt4Trade",
+      "otherEntityField": "ticket"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "watchlist",
+      "otherEntityRelationshipName": "mt4Account",
+      "relationshipName": "watchlist",
+      "otherEntityField": "watchlistName"
+    }
+  ],
+  "changelogDate": "20201111113211",
+  "entityTableName": "mt_4_account",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

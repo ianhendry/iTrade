@@ -1,0 +1,12 @@
+{
+  "iTradeApp": {
+    "SIGNALBARSIZE": {
+      "null": "",
+      "SMALL": "SMALL",
+      "MEDIUM": "MEDIUM",
+      "LARGE": "LARGE",
+      "VERYLARGE": "VERYLARGE",
+      "GIGANTIC": "GIGANTIC"
+    }
+  }
+}

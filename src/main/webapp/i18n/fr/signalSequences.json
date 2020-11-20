@@ -1,0 +1,24 @@
+{
+  "iTradeApp": {
+    "signalSequences": {
+      "home": {
+        "title": "SignalSequences",
+        "createLabel": "Créer un nouveau Signal Sequences",
+        "createOrEditLabel": "Créer ou éditer un Signal Sequences",
+        "notFound": "Aucun Signal Sequences trouvé"
+      },
+      "created": "Un nouveau Signal Sequences a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Signal Sequences avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Signal Sequences avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Signal Sequences {{ id }} ?"
+      },
+      "detail": {
+        "title": "Signal Sequences"
+      },
+      "sequenceName": "Sequence Name",
+      "sequenceIdentifier": "Sequence Identifier",
+      "sequenceDescription": "Sequence Description"
+    }
+  }
+}

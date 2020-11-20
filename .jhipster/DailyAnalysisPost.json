@@ -1,0 +1,95 @@
+{
+  "name": "DailyAnalysisPost",
+  "fields": [
+    {
+      "fieldName": "postTitle",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dayOfWeek",
+      "fieldType": "DAYOFWEEK",
+      "fieldValues": "MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "backgroundVolume",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "priceAction",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reasonsToEnter",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "warningSigns",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dailyChartImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "oneHrChartImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "fiveMinChartImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "planForToday",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "highVolBar",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "highVolBarLocation",
+      "fieldType": "HIGHVOLBARLOCATION",
+      "fieldValues": "TOUCHING,CROSSING,DISTANT"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "instrument",
+      "otherEntityRelationshipName": "dailyAnalysisPost",
+      "relationshipName": "instrument",
+      "otherEntityField": "ticker",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "mt4Account",
+      "otherEntityRelationshipName": "dailyAnalysisPost",
+      "relationshipName": "mt4Account",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201111113511",
+  "entityTableName": "daily_analysis_post",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

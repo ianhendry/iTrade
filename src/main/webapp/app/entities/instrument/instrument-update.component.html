@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-instrument-heading" jhiTranslate="iTradeApp.instrument.home.createOrEditLabel">Create or edit a Instrument</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.instrument.dataProvider" for="field_dataProvider">Data Provider</label>
+                    <select class="form-control" name="dataProvider" formControlName="dataProvider" id="field_dataProvider">
+                        <option value="FXPRO">{{ 'iTradeApp.DATAPROVIDER.FXPRO' | translate }}</option>
+                        <option value="QUANDLL">{{ 'iTradeApp.DATAPROVIDER.QUANDLL' | translate }}</option>
+                        <option value="TRADENAVIGATOR">{{ 'iTradeApp.DATAPROVIDER.TRADENAVIGATOR' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.instrument.ticker" for="field_ticker">Ticker</label>
+                    <input type="text" class="form-control" name="ticker" id="field_ticker"
+                           formControlName="ticker"/>
+                    <div *ngIf="editForm.get('ticker')!.invalid && (editForm.get('ticker')!.dirty || editForm.get('ticker')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ticker')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.instrument.exchange" for="field_exchange">Exchange</label>
+                    <input type="text" class="form-control" name="exchange" id="field_exchange"
+                           formControlName="exchange"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.instrument.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.instrument.dataFrom" for="field_dataFrom">Data From</label>
+                    <div class="input-group">
+                        <input id="field_dataFrom" type="text" class="form-control" name="dataFrom" ngbDatepicker #dataFromDp="ngbDatepicker" formControlName="dataFrom"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataFromDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.instrument.isActive" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                           formControlName="isActive"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.instrument.dateAdded" for="field_dateAdded">Date Added</label>
+                    <div class="input-group">
+                        <input id="field_dateAdded" type="text" class="form-control" name="dateAdded" ngbDatepicker #dateAddedDp="ngbDatepicker" formControlName="dateAdded"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateAddedDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.instrument.dateInactive" for="field_dateInactive">Date Inactive</label>
+                    <div class="input-group">
+                        <input id="field_dateInactive" type="text" class="form-control" name="dateInactive" ngbDatepicker #dateInactiveDp="ngbDatepicker" formControlName="dateInactive"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateInactiveDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

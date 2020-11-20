@@ -1,0 +1,56 @@
+{
+  "name": "SiteAccount",
+  "fields": [
+    {
+      "fieldName": "accountEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountReal",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "accountBalance",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "accountOpenDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "accountCloseDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "siteAccount",
+      "relationshipName": "user",
+      "otherEntityField": "login"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "mt4Account",
+      "otherEntityRelationshipName": "siteAccount",
+      "relationshipName": "mt4Account",
+      "otherEntityField": "accountLogin"
+    }
+  ],
+  "changelogDate": "20201111113111",
+  "entityTableName": "site_account",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

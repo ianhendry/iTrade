@@ -1,0 +1,91 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="iTradeApp.siteAccount.home.title">Site Accounts</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-site-account" [routerLink]="['/site-account/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="iTradeApp.siteAccount.home.createLabel">
+            Create a new Site Account
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="siteAccounts?.length === 0">
+        <span jhiTranslate="iTradeApp.siteAccount.home.notFound">No siteAccounts found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="siteAccounts && siteAccounts.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="accountEmail"><span jhiTranslate="iTradeApp.siteAccount.accountEmail">Account Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="accountName"><span jhiTranslate="iTradeApp.siteAccount.accountName">Account Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="accountReal"><span jhiTranslate="iTradeApp.siteAccount.accountReal">Account Real</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="accountBalance"><span jhiTranslate="iTradeApp.siteAccount.accountBalance">Account Balance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="accountOpenDate"><span jhiTranslate="iTradeApp.siteAccount.accountOpenDate">Account Open Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="accountCloseDate"><span jhiTranslate="iTradeApp.siteAccount.accountCloseDate">Account Close Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="iTradeApp.siteAccount.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mt4Account.accountLogin"><span jhiTranslate="iTradeApp.siteAccount.mt4Account">Mt 4 Account</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let siteAccount of siteAccounts ;trackBy: trackId">
+                    <td><a [routerLink]="['/site-account', siteAccount.id, 'view']">{{ siteAccount.id }}</a></td>
+                    <td>{{ siteAccount.accountEmail }}</td>
+                    <td>{{ siteAccount.accountName }}</td>
+                    <td>{{ siteAccount.accountReal }}</td>
+                    <td>{{ siteAccount.accountBalance }}</td>
+                    <td>{{ siteAccount.accountOpenDate | date:'mediumDate' }}</td>
+                    <td>{{ siteAccount.accountCloseDate | date:'mediumDate' }}</td>
+                    <td>
+                        {{ siteAccount.user?.login }}
+                    </td>
+                    <td>
+                        <div *ngIf="siteAccount.mt4Account">
+                            <a [routerLink]="['/mt-4-account', siteAccount.mt4Account?.id, 'view']" >{{ siteAccount.mt4Account?.accountLogin }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/site-account', siteAccount.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/site-account', siteAccount.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(siteAccount)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="siteAccounts && siteAccounts.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

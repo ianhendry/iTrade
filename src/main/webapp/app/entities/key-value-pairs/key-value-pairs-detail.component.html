@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="keyValuePairs">
+            <h2><span jhiTranslate="iTradeApp.keyValuePairs.detail.title">Key Value Pairs</span> {{ keyValuePairs.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.keyValuePairs.keyValueGroup">Key Value Group</span></dt>
+                <dd>
+                    <span>{{ keyValuePairs.keyValueGroup }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.keyValuePairs.keyValue">Key Value</span></dt>
+                <dd>
+                    <span>{{ keyValuePairs.keyValue }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.keyValuePairs.keyValueEntry">Key Value Entry</span></dt>
+                <dd>
+                    <span>{{ keyValuePairs.keyValueEntry }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/key-value-pairs', keyValuePairs.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

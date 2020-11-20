@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tradeJournalPost">
+            <h2><span jhiTranslate="iTradeApp.tradeJournalPost.detail.title">Trade Journal Post</span> {{ tradeJournalPost.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.postTitle">Post Title</span></dt>
+                <dd>
+                    <span>{{ tradeJournalPost.postTitle }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.postBody">Post Body</span></dt>
+                <dd>
+                    <span>{{ tradeJournalPost.postBody }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.dateAdded">Date Added</span></dt>
+                <dd>
+                    <span>{{ tradeJournalPost.dateAdded }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.dateApproved">Date Approved</span></dt>
+                <dd>
+                    <span>{{ tradeJournalPost.dateApproved }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.media1">Media 1</span></dt>
+                <dd>
+                    <div *ngIf="tradeJournalPost.media1">
+                        <a (click)="openFile(tradeJournalPost.media1ContentType, tradeJournalPost.media1)">
+                            <img [src]="'data:' + tradeJournalPost.media1ContentType + ';base64,' + tradeJournalPost.media1" style="max-width: 100%;" alt="tradeJournalPost image"/>
+                        </a>
+                        {{ tradeJournalPost.media1ContentType }}, {{ byteSize(tradeJournalPost.media1) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.media2">Media 2</span></dt>
+                <dd>
+                    <div *ngIf="tradeJournalPost.media2">
+                        <a (click)="openFile(tradeJournalPost.media2ContentType, tradeJournalPost.media2)">
+                            <img [src]="'data:' + tradeJournalPost.media2ContentType + ';base64,' + tradeJournalPost.media2" style="max-width: 100%;" alt="tradeJournalPost image"/>
+                        </a>
+                        {{ tradeJournalPost.media2ContentType }}, {{ byteSize(tradeJournalPost.media2) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.media3">Media 3</span></dt>
+                <dd>
+                    <div *ngIf="tradeJournalPost.media3">
+                        <a (click)="openFile(tradeJournalPost.media3ContentType, tradeJournalPost.media3)">
+                            <img [src]="'data:' + tradeJournalPost.media3ContentType + ';base64,' + tradeJournalPost.media3" style="max-width: 100%;" alt="tradeJournalPost image"/>
+                        </a>
+                        {{ tradeJournalPost.media3ContentType }}, {{ byteSize(tradeJournalPost.media3) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.media4">Media 4</span></dt>
+                <dd>
+                    <div *ngIf="tradeJournalPost.media4">
+                        <a (click)="openFile(tradeJournalPost.media4ContentType, tradeJournalPost.media4)">
+                            <img [src]="'data:' + tradeJournalPost.media4ContentType + ';base64,' + tradeJournalPost.media4" style="max-width: 100%;" alt="tradeJournalPost image"/>
+                        </a>
+                        {{ tradeJournalPost.media4ContentType }}, {{ byteSize(tradeJournalPost.media4) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.comment">Comment</span></dt>
+                <dd>
+                    <div *ngIf="tradeJournalPost.comment">
+                        <a [routerLink]="['/comment', tradeJournalPost.comment?.id, 'view']">{{ tradeJournalPost.comment?.commentTitle }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeJournalPost.videoPost">Video Post</span></dt>
+                <dd>
+                    <div *ngIf="tradeJournalPost.videoPost">
+                        <a [routerLink]="['/video-post', tradeJournalPost.videoPost?.id, 'view']">{{ tradeJournalPost.videoPost?.postTitle }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/trade-journal-post', tradeJournalPost.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

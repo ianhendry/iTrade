@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Mt4Account.
+    -->
+    <changeSet id="20201111113211-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="mt4trade_id"
+                                 baseTableName="mt_4_account"
+                                 constraintName="fk_mt_4_account_mt4trade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mt_4_trade"/>
+
+        <addForeignKeyConstraint baseColumnNames="watchlist_id"
+                                 baseTableName="mt_4_account"
+                                 constraintName="fk_mt_4_account_watchlist_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="watchlist"/>
+
+    </changeSet>
+</databaseChangeLog>

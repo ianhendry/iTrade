@@ -14,7 +14,32 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111112611_added_entity_PriceDataHistory.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111112711_added_entity_KeyValuePairs.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111112811_added_entity_SignalSequences.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111112911_added_entity_TradeSignals.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113011_added_entity_SignalService.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113111_added_entity_SiteAccount.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113211_added_entity_Mt4Account.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113311_added_entity_ShippingDetails.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113411_added_entity_TradeJournalPost.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113511_added_entity_DailyAnalysisPost.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113611_added_entity_VideoPost.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113711_added_entity_Comment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113811_added_entity_Watchlist.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113911_added_entity_Instrument.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111114011_added_entity_Mt4Trade.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20201111112611_added_entity_constraints_PriceDataHistory.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111112911_added_entity_constraints_TradeSignals.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113011_added_entity_constraints_SignalService.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113111_added_entity_constraints_SiteAccount.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113211_added_entity_constraints_Mt4Account.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113311_added_entity_constraints_ShippingDetails.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113411_added_entity_constraints_TradeJournalPost.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113511_added_entity_constraints_DailyAnalysisPost.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111113811_added_entity_constraints_Watchlist.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111114011_added_entity_constraints_Mt4Trade.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

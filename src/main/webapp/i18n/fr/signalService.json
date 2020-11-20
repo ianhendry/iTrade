@@ -1,0 +1,37 @@
+{
+  "iTradeApp": {
+    "signalService": {
+      "home": {
+        "title": "SignalServices",
+        "createLabel": "Créer un nouveau Signal Service",
+        "createOrEditLabel": "Créer ou éditer un Signal Service",
+        "notFound": "Aucun Signal Service trouvé"
+      },
+      "created": "Un nouveau Signal Service a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Signal Service avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Signal Service avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Signal Service {{ id }} ?"
+      },
+      "detail": {
+        "title": "Signal Service"
+      },
+      "alertDate": "Alert Date",
+      "alertTime": "Alert Time",
+      "alertText": "Alert Text",
+      "alertDescription": "Alert Description",
+      "signalIndicates": "Signal Indicates",
+      "image": "Image",
+      "timeframe": "Timeframe",
+      "alertPrice": "Alert Price",
+      "isSequencePresent": "Is Sequence Present",
+      "barVolume": "Bar Volume",
+      "barSize": "Bar Size",
+      "barClose": "Bar Close",
+      "isPublished": "Is Published",
+      "tradeSignals": "Trade Signals",
+      "intrument": "Intrument",
+      "priceDataHistory": "Price Data History"
+    }
+  }
+}

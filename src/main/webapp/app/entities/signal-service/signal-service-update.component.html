@@ -1,0 +1,176 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-signal-service-heading" jhiTranslate="iTradeApp.signalService.home.createOrEditLabel">Create or edit a Signal Service</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.alertDate" for="field_alertDate">Alert Date</label>
+                    <div class="input-group">
+                        <input id="field_alertDate" type="text" class="form-control" name="alertDate" ngbDatepicker #alertDateDp="ngbDatepicker" formControlName="alertDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="alertDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('alertDate')!.invalid && (editForm.get('alertDate')!.dirty || editForm.get('alertDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('alertDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.alertTime" for="field_alertTime">Alert Time</label>
+                    <div class="d-flex">
+                        <input id="field_alertTime" type="datetime-local" class="form-control" name="alertTime" formControlName="alertTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.alertText" for="field_alertText">Alert Text</label>
+                    <input type="text" class="form-control" name="alertText" id="field_alertText"
+                           formControlName="alertText"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.alertDescription" for="field_alertDescription">Alert Description</label>
+                    <textarea class="form-control" name="alertDescription" id="field_alertDescription"
+                              formControlName="alertDescription"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.signalIndicates" for="field_signalIndicates">Signal Indicates</label>
+                    <select class="form-control" name="signalIndicates" formControlName="signalIndicates" id="field_signalIndicates">
+                        <option value="STRENGTH">{{ 'iTradeApp.SIGNALINDICATES.STRENGTH' | translate }}</option>
+                        <option value="WEAKNESS">{{ 'iTradeApp.SIGNALINDICATES.WEAKNESS' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.image" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imageContentType')!.value + ';base64,' + editForm.get('image')!.value" style="max-height: 100px;" *ngIf="editForm.get('image')!.value" alt="signalService image"/>
+                        <div *ngIf="editForm.get('image')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('imageContentType')!.value }}, {{ byteSize(editForm.get('image')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'file_image')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image" (change)="setFileData($event, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                           formControlName="image"/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                           formControlName="imageContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.timeframe" for="field_timeframe">Timeframe</label>
+                    <select class="form-control" name="timeframe" formControlName="timeframe" id="field_timeframe">
+                        <option value="M1">{{ 'iTradeApp.TIMEFRAME.M1' | translate }}</option>
+                        <option value="M5">{{ 'iTradeApp.TIMEFRAME.M5' | translate }}</option>
+                        <option value="M15">{{ 'iTradeApp.TIMEFRAME.M15' | translate }}</option>
+                        <option value="M30">{{ 'iTradeApp.TIMEFRAME.M30' | translate }}</option>
+                        <option value="H1">{{ 'iTradeApp.TIMEFRAME.H1' | translate }}</option>
+                        <option value="H4">{{ 'iTradeApp.TIMEFRAME.H4' | translate }}</option>
+                        <option value="D1">{{ 'iTradeApp.TIMEFRAME.D1' | translate }}</option>
+                        <option value="W1">{{ 'iTradeApp.TIMEFRAME.W1' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('timeframe')!.invalid && (editForm.get('timeframe')!.dirty || editForm.get('timeframe')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('timeframe')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.alertPrice" for="field_alertPrice">Alert Price</label>
+                    <input type="number" class="form-control" name="alertPrice" id="field_alertPrice"
+                           formControlName="alertPrice"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.isSequencePresent" for="field_isSequencePresent">Is Sequence Present</label>
+                    <input type="checkbox" class="form-control" name="isSequencePresent" id="field_isSequencePresent"
+                           formControlName="isSequencePresent"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.barVolume" for="field_barVolume">Bar Volume</label>
+                    <input type="number" class="form-control" name="barVolume" id="field_barVolume"
+                           formControlName="barVolume"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.barSize" for="field_barSize">Bar Size</label>
+                    <select class="form-control" name="barSize" formControlName="barSize" id="field_barSize">
+                        <option value="SMALL">{{ 'iTradeApp.SIGNALBARSIZE.SMALL' | translate }}</option>
+                        <option value="MEDIUM">{{ 'iTradeApp.SIGNALBARSIZE.MEDIUM' | translate }}</option>
+                        <option value="LARGE">{{ 'iTradeApp.SIGNALBARSIZE.LARGE' | translate }}</option>
+                        <option value="VERYLARGE">{{ 'iTradeApp.SIGNALBARSIZE.VERYLARGE' | translate }}</option>
+                        <option value="GIGANTIC">{{ 'iTradeApp.SIGNALBARSIZE.GIGANTIC' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.barClose" for="field_barClose">Bar Close</label>
+                    <select class="form-control" name="barClose" formControlName="barClose" id="field_barClose">
+                        <option value="MIDDLE">{{ 'iTradeApp.BARCLOSE.MIDDLE' | translate }}</option>
+                        <option value="TOP">{{ 'iTradeApp.BARCLOSE.TOP' | translate }}</option>
+                        <option value="LOW">{{ 'iTradeApp.BARCLOSE.LOW' | translate }}</option>
+                        <option value="MIDTOP">{{ 'iTradeApp.BARCLOSE.MIDTOP' | translate }}</option>
+                        <option value="MIDLOW">{{ 'iTradeApp.BARCLOSE.MIDLOW' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.isPublished" for="field_isPublished">Is Published</label>
+                    <input type="checkbox" class="form-control" name="isPublished" id="field_isPublished"
+                           formControlName="isPublished"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.tradeSignals" for="field_tradeSignals">Trade Signals</label>
+                    <select class="form-control" id="field_tradeSignals" name="tradeSignals" formControlName="tradeSignals">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tradeSignalsOption.id === editForm.get('tradeSignals')!.value?.id ? editForm.get('tradeSignals')!.value : tradeSignalsOption" *ngFor="let tradeSignalsOption of tradesignals; trackBy: trackById">{{ tradeSignalsOption.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="iTradeApp.signalService.intrument" for="field_intruments">Intrument</label>
+                    <select class="form-control" id="field_intruments" multiple name="intruments" formControlName="intruments">
+                        <option [ngValue]="getSelected(editForm.get('intruments')!.value, instrumentOption)" *ngFor="let instrumentOption of instruments; trackBy: trackById">{{ instrumentOption.ticker }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.signalService.priceDataHistory" for="field_priceDataHistory">Price Data History</label>
+                    <select class="form-control" id="field_priceDataHistory" name="priceDataHistory" formControlName="priceDataHistory">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="priceDataHistoryOption.id === editForm.get('priceDataHistory')!.value?.id ? editForm.get('priceDataHistory')!.value : priceDataHistoryOption" *ngFor="let priceDataHistoryOption of pricedatahistories; trackBy: trackById">{{ priceDataHistoryOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

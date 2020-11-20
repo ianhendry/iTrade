@@ -1,0 +1,101 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="signalService">
+            <h2><span jhiTranslate="iTradeApp.signalService.detail.title">Signal Service</span> {{ signalService.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.signalService.alertDate">Alert Date</span></dt>
+                <dd>
+                    <span>{{ signalService.alertDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.alertTime">Alert Time</span></dt>
+                <dd>
+                    <span>{{ signalService.alertTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.alertText">Alert Text</span></dt>
+                <dd>
+                    <span>{{ signalService.alertText }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.alertDescription">Alert Description</span></dt>
+                <dd>
+                    <span>{{ signalService.alertDescription }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.signalIndicates">Signal Indicates</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.SIGNALINDICATES.' + signalService.signalIndicates }}">{{ signalService.signalIndicates }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="signalService.image">
+                        <a (click)="openFile(signalService.imageContentType, signalService.image)">
+                            <img [src]="'data:' + signalService.imageContentType + ';base64,' + signalService.image" style="max-width: 100%;" alt="signalService image"/>
+                        </a>
+                        {{ signalService.imageContentType }}, {{ byteSize(signalService.image) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.timeframe">Timeframe</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.TIMEFRAME.' + signalService.timeframe }}">{{ signalService.timeframe }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.alertPrice">Alert Price</span></dt>
+                <dd>
+                    <span>{{ signalService.alertPrice }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.isSequencePresent">Is Sequence Present</span></dt>
+                <dd>
+                    <span>{{ signalService.isSequencePresent }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.barVolume">Bar Volume</span></dt>
+                <dd>
+                    <span>{{ signalService.barVolume }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.barSize">Bar Size</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.SIGNALBARSIZE.' + signalService.barSize }}">{{ signalService.barSize }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.barClose">Bar Close</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.BARCLOSE.' + signalService.barClose }}">{{ signalService.barClose }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.isPublished">Is Published</span></dt>
+                <dd>
+                    <span>{{ signalService.isPublished }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.tradeSignals">Trade Signals</span></dt>
+                <dd>
+                    <div *ngIf="signalService.tradeSignals">
+                        <a [routerLink]="['/trade-signals', signalService.tradeSignals?.id, 'view']">{{ signalService.tradeSignals?.name }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.intrument">Intrument</span></dt>
+                <dd>
+                    <span *ngFor="let intrument of signalService.intruments; let last = last">
+                        <a [routerLink]="['/instrument', intrument?.id, 'view']">{{ intrument.ticker }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalService.priceDataHistory">Price Data History</span></dt>
+                <dd>
+                    <div *ngIf="signalService.priceDataHistory">
+                        <a [routerLink]="['/price-data-history', signalService.priceDataHistory?.id, 'view']">{{ signalService.priceDataHistory?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/signal-service', signalService.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

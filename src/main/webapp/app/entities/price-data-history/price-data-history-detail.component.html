@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="priceDataHistory">
+            <h2><span jhiTranslate="iTradeApp.priceDataHistory.detail.title">Price Data History</span> {{ priceDataHistory.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.priceTimeframe">Price Timeframe</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.TIMEFRAME.' + priceDataHistory.priceTimeframe }}">{{ priceDataHistory.priceTimeframe }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.priceDate">Price Date</span></dt>
+                <dd>
+                    <span>{{ priceDataHistory.priceDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.priceTime">Price Time</span></dt>
+                <dd>
+                    <span>{{ priceDataHistory.priceTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.priceOpen">Price Open</span></dt>
+                <dd>
+                    <span>{{ priceDataHistory.priceOpen }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.priceHigh">Price High</span></dt>
+                <dd>
+                    <span>{{ priceDataHistory.priceHigh }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.priceLow">Price Low</span></dt>
+                <dd>
+                    <span>{{ priceDataHistory.priceLow }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.priceClose">Price Close</span></dt>
+                <dd>
+                    <span>{{ priceDataHistory.priceClose }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.priceVolume">Price Volume</span></dt>
+                <dd>
+                    <span>{{ priceDataHistory.priceVolume }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.priceDataHistory.instrument">Instrument</span></dt>
+                <dd>
+                    <div *ngIf="priceDataHistory.instrument">
+                        <a [routerLink]="['/instrument', priceDataHistory.instrument?.id, 'view']">{{ priceDataHistory.instrument?.ticker }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/price-data-history', priceDataHistory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

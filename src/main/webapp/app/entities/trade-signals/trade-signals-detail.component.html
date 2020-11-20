@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tradeSignals">
+            <h2><span jhiTranslate="iTradeApp.tradeSignals.detail.title">Trade Signals</span> {{ tradeSignals.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.name">Name</span></dt>
+                <dd>
+                    <span>{{ tradeSignals.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.note">Note</span></dt>
+                <dd>
+                    <span>{{ tradeSignals.note }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.numberOfBars">Number Of Bars</span></dt>
+                <dd>
+                    <span>{{ tradeSignals.numberOfBars }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.signalIndicates">Signal Indicates</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'iTradeApp.SIGNALINDICATES.' + tradeSignals.signalIndicates }}">{{ tradeSignals.signalIndicates }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.description">Description</span></dt>
+                <dd>
+                    <span>{{ tradeSignals.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.background">Background</span></dt>
+                <dd>
+                    <span>{{ tradeSignals.background }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.actionToTake">Action To Take</span></dt>
+                <dd>
+                    <span>{{ tradeSignals.actionToTake }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.sequenceNumber">Sequence Number</span></dt>
+                <dd>
+                    <span>{{ tradeSignals.sequenceNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.tradeSignals.signalsSequences">Signals Sequences</span></dt>
+                <dd>
+                    <div *ngIf="tradeSignals.signalsSequences">
+                        <a [routerLink]="['/signal-sequences', tradeSignals.signalsSequences?.id, 'view']">{{ tradeSignals.signalsSequences?.sequenceIdentifier }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/trade-signals', tradeSignals.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

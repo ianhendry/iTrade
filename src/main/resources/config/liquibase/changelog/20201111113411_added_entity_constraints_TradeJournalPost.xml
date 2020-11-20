@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity TradeJournalPost.
+    -->
+    <changeSet id="20201111113411-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="comment_id"
+                                 baseTableName="trade_journal_post"
+                                 constraintName="fk_trade_journal_post_comment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comment"/>
+
+        <addForeignKeyConstraint baseColumnNames="video_post_id"
+                                 baseTableName="trade_journal_post"
+                                 constraintName="fk_trade_journal_post_video_post_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="video_post"/>
+
+    </changeSet>
+</databaseChangeLog>

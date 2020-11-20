@@ -1,0 +1,63 @@
+{
+  "name": "TradeSignals",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numberOfBars",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "signalIndicates",
+      "fieldType": "SIGNALINDICATES",
+      "fieldValues": "STRENGTH,WEAKNESS"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "background",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "actionToTake",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "sequenceNumber",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "signalSequences",
+      "otherEntityRelationshipName": "tradeSignals",
+      "relationshipName": "signalsSequences",
+      "otherEntityField": "sequenceIdentifier"
+    }
+  ],
+  "changelogDate": "20201111112911",
+  "javadoc": "used to store the available signals - strength indications & weakness indications",
+  "entityTableName": "trade_signals",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["iTrade"]
+}

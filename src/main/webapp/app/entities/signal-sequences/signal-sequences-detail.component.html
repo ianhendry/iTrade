@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="signalSequences">
+            <h2><span jhiTranslate="iTradeApp.signalSequences.detail.title">Signal Sequences</span> {{ signalSequences.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="iTradeApp.signalSequences.sequenceName">Sequence Name</span></dt>
+                <dd>
+                    <span>{{ signalSequences.sequenceName }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalSequences.sequenceIdentifier">Sequence Identifier</span></dt>
+                <dd>
+                    <span>{{ signalSequences.sequenceIdentifier }}</span>
+                </dd>
+                <dt><span jhiTranslate="iTradeApp.signalSequences.sequenceDescription">Sequence Description</span></dt>
+                <dd>
+                    <span>{{ signalSequences.sequenceDescription }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/signal-sequences', signalSequences.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

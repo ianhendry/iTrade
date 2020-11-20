@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-trade-signals-heading" jhiTranslate="iTradeApp.tradeSignals.home.createOrEditLabel">Create or edit a Trade Signals</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.note" for="field_note">Note</label>
+                    <input type="text" class="form-control" name="note" id="field_note"
+                           formControlName="note"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.numberOfBars" for="field_numberOfBars">Number Of Bars</label>
+                    <input type="number" class="form-control" name="numberOfBars" id="field_numberOfBars"
+                           formControlName="numberOfBars"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.signalIndicates" for="field_signalIndicates">Signal Indicates</label>
+                    <select class="form-control" name="signalIndicates" formControlName="signalIndicates" id="field_signalIndicates">
+                        <option value="STRENGTH">{{ 'iTradeApp.SIGNALINDICATES.STRENGTH' | translate }}</option>
+                        <option value="WEAKNESS">{{ 'iTradeApp.SIGNALINDICATES.WEAKNESS' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.description" for="field_description">Description</label>
+                    <textarea class="form-control" name="description" id="field_description"
+                              formControlName="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.background" for="field_background">Background</label>
+                    <textarea class="form-control" name="background" id="field_background"
+                              formControlName="background"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.actionToTake" for="field_actionToTake">Action To Take</label>
+                    <textarea class="form-control" name="actionToTake" id="field_actionToTake"
+                              formControlName="actionToTake"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.sequenceNumber" for="field_sequenceNumber">Sequence Number</label>
+                    <input type="number" class="form-control" name="sequenceNumber" id="field_sequenceNumber"
+                           formControlName="sequenceNumber"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="iTradeApp.tradeSignals.signalsSequences" for="field_signalsSequences">Signals Sequences</label>
+                    <select class="form-control" id="field_signalsSequences" name="signalsSequences" formControlName="signalsSequences">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="signalSequencesOption.id === editForm.get('signalsSequences')!.value?.id ? editForm.get('signalsSequences')!.value : signalSequencesOption" *ngFor="let signalSequencesOption of signalsequences; trackBy: trackById">{{ signalSequencesOption.sequenceIdentifier }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

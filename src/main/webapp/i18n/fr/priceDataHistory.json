@@ -1,0 +1,31 @@
+{
+  "iTradeApp": {
+    "priceDataHistory": {
+      "home": {
+        "title": "PriceDataHistories",
+        "createLabel": "Créer un nouveau Price Data History",
+        "createOrEditLabel": "Créer ou éditer un Price Data History",
+        "notFound": "Aucun Price Data History trouvé"
+      },
+      "created": "Un nouveau Price Data History a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Price Data History avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Price Data History avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Price Data History {{ id }} ?"
+      },
+      "detail": {
+        "title": "Price Data History"
+      },
+      "priceTimeframe": "Price Timeframe",
+      "priceDate": "Price Date",
+      "priceTime": "Price Time",
+      "priceOpen": "Price Open",
+      "priceHigh": "Price High",
+      "priceLow": "Price Low",
+      "priceClose": "Price Close",
+      "priceVolume": "Price Volume",
+      "signalService": "Signal Service",
+      "instrument": "Instrument"
+    }
+  }
+}

@@ -48,6 +48,27 @@ public class CacheConfiguration {
             createCache(cm, com.gracefl.tradeplus.domain.User.class.getName());
             createCache(cm, com.gracefl.tradeplus.domain.Authority.class.getName());
             createCache(cm, com.gracefl.tradeplus.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.gracefl.tradeplus.domain.PriceDataHistory.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.PriceDataHistory.class.getName() + ".signalServices");
+            createCache(cm, com.gracefl.tradeplus.domain.KeyValuePairs.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.SignalSequences.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.TradeSignals.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.SignalService.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.SignalService.class.getName() + ".intruments");
+            createCache(cm, com.gracefl.tradeplus.domain.SiteAccount.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.Mt4Account.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.Mt4Account.class.getName() + ".dailyAnalysisPosts");
+            createCache(cm, com.gracefl.tradeplus.domain.ShippingDetails.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.TradeJournalPost.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.DailyAnalysisPost.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.VideoPost.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.Comment.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.Watchlist.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.Watchlist.class.getName() + ".intruments");
+            createCache(cm, com.gracefl.tradeplus.domain.Instrument.class.getName());
+            createCache(cm, com.gracefl.tradeplus.domain.Instrument.class.getName() + ".watchlists");
+            createCache(cm, com.gracefl.tradeplus.domain.Instrument.class.getName() + ".signalServices");
+            createCache(cm, com.gracefl.tradeplus.domain.Mt4Trade.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

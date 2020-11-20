@@ -1,0 +1,11 @@
+id;alert_date;alert_time;alert_text;alert_description;signal_indicates;image;image_content_type;timeframe;alert_price;is_sequence_present;bar_volume;bar_size;bar_close;is_published
+1;2020-11-11;2020-11-10T13:50:37;Yen User-friendly workforce;../fake-data/blob/hipster.txt;WEAKNESS;../fake-data/blob/hipster.png;image/png;M5;85166;false;81024;GIGANTIC;LOW;false
+2;2020-11-11;2020-11-11T05:26:41;well-modulated;../fake-data/blob/hipster.txt;WEAKNESS;../fake-data/blob/hipster.png;image/png;M1;70500;false;91895;VERYLARGE;LOW;false
+3;2020-11-11;2020-11-10T21:40:00;models calculate Vermont;../fake-data/blob/hipster.txt;WEAKNESS;../fake-data/blob/hipster.png;image/png;M5;80752;true;15210;SMALL;TOP;false
+4;2020-11-10;2020-11-11T00:53:27;Savings Account circuit primary;../fake-data/blob/hipster.txt;STRENGTH;../fake-data/blob/hipster.png;image/png;M1;67334;false;48106;GIGANTIC;MIDDLE;true
+5;2020-11-10;2020-11-11T01:40:48;Senior Radial;../fake-data/blob/hipster.txt;WEAKNESS;../fake-data/blob/hipster.png;image/png;M30;38104;false;331;SMALL;TOP;false
+6;2020-11-11;2020-11-10T14:26:28;revolutionary;../fake-data/blob/hipster.txt;WEAKNESS;../fake-data/blob/hipster.png;image/png;M30;70335;false;69716;VERYLARGE;LOW;false
+7;2020-11-10;2020-11-10T13:04:09;Louisiana Vista;../fake-data/blob/hipster.txt;WEAKNESS;../fake-data/blob/hipster.png;image/png;W1;8803;false;27507;SMALL;MIDTOP;false
+8;2020-11-11;2020-11-10T19:50:00;directional;../fake-data/blob/hipster.txt;STRENGTH;../fake-data/blob/hipster.png;image/png;H4;49268;true;86072;GIGANTIC;MIDTOP;false
+9;2020-11-11;2020-11-11T02:30:04;Practical SMS;../fake-data/blob/hipster.txt;WEAKNESS;../fake-data/blob/hipster.png;image/png;W1;32183;false;91638;VERYLARGE;LOW;false
+10;2020-11-11;2020-11-10T13:17:47;COM Washington;../fake-data/blob/hipster.txt;STRENGTH;../fake-data/blob/hipster.png;image/png;D1;51339;true;78898;LARGE;MIDLOW;false

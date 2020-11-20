@@ -1,0 +1,29 @@
+{
+  "iTradeApp": {
+    "siteAccount": {
+      "home": {
+        "title": "SiteAccounts",
+        "createLabel": "Créer un nouveau Site Account",
+        "createOrEditLabel": "Créer ou éditer un Site Account",
+        "notFound": "Aucun Site Account trouvé"
+      },
+      "created": "Un nouveau Site Account a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Site Account avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Site Account avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Site Account {{ id }} ?"
+      },
+      "detail": {
+        "title": "Site Account"
+      },
+      "accountEmail": "Account Email",
+      "accountName": "Account Name",
+      "accountReal": "Account Real",
+      "accountBalance": "Account Balance",
+      "accountOpenDate": "Account Open Date",
+      "accountCloseDate": "Account Close Date",
+      "user": "User",
+      "mt4Account": "Mt 4 Account"
+    }
+  }
+}

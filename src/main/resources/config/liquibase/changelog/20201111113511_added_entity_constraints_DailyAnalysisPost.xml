@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity DailyAnalysisPost.
+    -->
+    <changeSet id="20201111113511-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="instrument_id"
+                                 baseTableName="daily_analysis_post"
+                                 constraintName="fk_daily_analysis_post_instrument_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="instrument"/>
+
+        <addForeignKeyConstraint baseColumnNames="mt4account_id"
+                                 baseTableName="daily_analysis_post"
+                                 constraintName="fk_daily_analysis_post_mt4account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mt_4_account"/>
+
+    </changeSet>
+</databaseChangeLog>

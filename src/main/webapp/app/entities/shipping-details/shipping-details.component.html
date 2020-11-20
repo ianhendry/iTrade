@@ -1,0 +1,100 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="iTradeApp.shippingDetails.home.title">Shipping Details</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-shipping-details" [routerLink]="['/shipping-details/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="iTradeApp.shippingDetails.home.createLabel">
+            Create a new Shipping Details
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="shippingDetails?.length === 0">
+        <span jhiTranslate="iTradeApp.shippingDetails.home.notFound">No shippingDetails found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="shippingDetails && shippingDetails.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userName"><span jhiTranslate="iTradeApp.shippingDetails.userName">User Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="iTradeApp.shippingDetails.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="iTradeApp.shippingDetails.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address1"><span jhiTranslate="iTradeApp.shippingDetails.address1">Address 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address2"><span jhiTranslate="iTradeApp.shippingDetails.address2">Address 2</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address3"><span jhiTranslate="iTradeApp.shippingDetails.address3">Address 3</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address4"><span jhiTranslate="iTradeApp.shippingDetails.address4">Address 4</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="address5"><span jhiTranslate="iTradeApp.shippingDetails.address5">Address 5</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateAdded"><span jhiTranslate="iTradeApp.shippingDetails.dateAdded">Date Added</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateInactive"><span jhiTranslate="iTradeApp.shippingDetails.dateInactive">Date Inactive</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userPicture"><span jhiTranslate="iTradeApp.shippingDetails.userPicture">User Picture</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="iTradeApp.shippingDetails.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let shippingDetails of shippingDetails ;trackBy: trackId">
+                    <td><a [routerLink]="['/shipping-details', shippingDetails.id, 'view']">{{ shippingDetails.id }}</a></td>
+                    <td>{{ shippingDetails.userName }}</td>
+                    <td>{{ shippingDetails.email }}</td>
+                    <td>{{ shippingDetails.name }}</td>
+                    <td>{{ shippingDetails.address1 }}</td>
+                    <td>{{ shippingDetails.address2 }}</td>
+                    <td>{{ shippingDetails.address3 }}</td>
+                    <td>{{ shippingDetails.address4 }}</td>
+                    <td>{{ shippingDetails.address5 }}</td>
+                    <td>{{ shippingDetails.dateAdded | date:'mediumDate' }}</td>
+                    <td>{{ shippingDetails.dateInactive | date:'mediumDate' }}</td>
+                    <td>
+                        <a *ngIf="shippingDetails.userPicture" (click)="openFile(shippingDetails.userPictureContentType, shippingDetails.userPicture)">
+                            <img [src]="'data:' + shippingDetails.userPictureContentType + ';base64,' + shippingDetails.userPicture" style="max-height: 30px;" alt="shippingDetails image"/>
+                        </a>
+                        <span *ngIf="shippingDetails.userPicture">{{ shippingDetails.userPictureContentType }}, {{ byteSize(shippingDetails.userPicture) }}</span>
+                    </td>
+                    <td>
+                        {{ shippingDetails.user?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/shipping-details', shippingDetails.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/shipping-details', shippingDetails.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(shippingDetails)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="shippingDetails && shippingDetails.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
