@@ -1,0 +1,463 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="Ianhe (generated)" id="1605953070020-1">
+        <createTable tableName="comment">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="commentPK"/>
+            </column>
+            <column name="comment_body" type="VARCHAR(255)"/>
+            <column name="comment_media" type="BLOB"/>
+            <column name="comment_media_content_type" type="VARCHAR(255)"/>
+            <column name="comment_title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_added" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_approved" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-2">
+        <createTable tableName="daily_analysis_post">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="daily_analysis_postPK"/>
+            </column>
+            <column name="background_volume" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="daily_chart_image" type="BLOB"/>
+            <column name="daily_chart_image_content_type" type="VARCHAR(255)"/>
+            <column name="date_added" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day_of_week" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="five_min_chart_image" type="BLOB"/>
+            <column name="five_min_chart_image_content_type" type="VARCHAR(255)"/>
+            <column name="high_vol_bar" type="VARCHAR(255)"/>
+            <column name="high_vol_bar_location" type="VARCHAR(255)"/>
+            <column name="one_hr_chart_image" type="BLOB"/>
+            <column name="one_hr_chart_image_content_type" type="VARCHAR(255)"/>
+            <column name="plan_for_today" type="VARCHAR(255)"/>
+            <column name="post_title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price_action" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reasons_to_enter" type="VARCHAR(255)"/>
+            <column name="warning_signs" type="VARCHAR(255)"/>
+            <column name="instrument_id" type="BIGINT"/>
+            <column name="mt4account_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-3">
+        <createTable tableName="instrument">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="instrumentPK"/>
+            </column>
+            <column name="data_from" type="date"/>
+            <column name="data_provider" type="VARCHAR(255)"/>
+            <column name="date_added" type="date"/>
+            <column name="date_inactive" type="date"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="exchange" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="ticker" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-4">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-5">
+        <createTable tableName="jhi_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="TIMESTAMP"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-6">
+        <createTable tableName="jhi_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-7">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="TIMESTAMP"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(10)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="TIMESTAMP"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-8">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-9">
+        <createTable tableName="key_value_pairs">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="key_value_pairsPK"/>
+            </column>
+            <column name="key_value" type="VARCHAR(255)"/>
+            <column name="key_value_entry" type="VARCHAR(255)"/>
+            <column name="key_value_group" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-10">
+        <createTable tableName="mt_4_account">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="mt_4_accountPK"/>
+            </column>
+            <column name="account_active" type="BOOLEAN"/>
+            <column name="account_broker" type="VARCHAR(255)"/>
+            <column name="account_close_date" type="date"/>
+            <column name="account_login" type="VARCHAR(255)"/>
+            <column name="account_password" type="VARCHAR(255)"/>
+            <column name="account_type" type="VARCHAR(255)"/>
+            <column name="mt4trade_id" type="BIGINT"/>
+            <column name="watchlist_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-11">
+        <createTable tableName="mt_4_trade">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="mt_4_tradePK"/>
+            </column>
+            <column name="close_price" type="DOUBLE"/>
+            <column name="close_time" type="TIMESTAMP"/>
+            <column name="commission" type="DOUBLE"/>
+            <column name="direction_type" type="VARCHAR(255)"/>
+            <column name="open_price" type="DOUBLE"/>
+            <column name="open_time" type="TIMESTAMP"/>
+            <column name="position_size" type="DOUBLE"/>
+            <column name="profit" type="DOUBLE"/>
+            <column name="stop_loss_price" type="DOUBLE"/>
+            <column name="swap" type="DOUBLE"/>
+            <column name="take_profit_price" type="DOUBLE"/>
+            <column name="taxes" type="DOUBLE"/>
+            <column name="ticket" type="DECIMAL(21, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="instrument_id" type="BIGINT"/>
+            <column name="trade_journal_post_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-12">
+        <createTable tableName="price_data_history">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="price_data_historyPK"/>
+            </column>
+            <column name="price_close" type="DOUBLE"/>
+            <column name="price_date" type="date"/>
+            <column name="price_high" type="DOUBLE"/>
+            <column name="price_low" type="DOUBLE"/>
+            <column name="price_open" type="DOUBLE"/>
+            <column name="price_time" type="TIMESTAMP"/>
+            <column name="price_timeframe" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price_volume" type="DOUBLE"/>
+            <column name="instrument_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-13">
+        <createTable tableName="shipping_details">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shipping_detailsPK"/>
+            </column>
+            <column name="address_1" type="VARCHAR(255)"/>
+            <column name="address_2" type="VARCHAR(255)"/>
+            <column name="address_3" type="VARCHAR(255)"/>
+            <column name="address_4" type="VARCHAR(255)"/>
+            <column name="address_5" type="VARCHAR(255)"/>
+            <column name="date_added" type="date"/>
+            <column name="date_inactive" type="date"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="user_name" type="VARCHAR(255)"/>
+            <column name="user_picture" type="BLOB"/>
+            <column name="user_picture_content_type" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-14">
+        <createTable tableName="signal_sequences">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="signal_sequencesPK"/>
+            </column>
+            <column name="sequence_description" type="CLOB"/>
+            <column name="sequence_identifier" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-15">
+        <createTable tableName="signal_service">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="signal_servicePK"/>
+            </column>
+            <column name="alert_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alert_description" type="CLOB"/>
+            <column name="alert_price" type="DOUBLE"/>
+            <column name="alert_text" type="VARCHAR(255)"/>
+            <column name="alert_time" type="TIMESTAMP"/>
+            <column name="bar_close" type="VARCHAR(255)"/>
+            <column name="bar_size" type="VARCHAR(255)"/>
+            <column name="bar_volume" type="DECIMAL(21, 2)"/>
+            <column name="image" type="BLOB"/>
+            <column name="image_content_type" type="VARCHAR(255)"/>
+            <column name="is_published" type="BOOLEAN"/>
+            <column name="is_sequence_present" type="BOOLEAN"/>
+            <column name="signal_indicates" type="VARCHAR(255)"/>
+            <column name="ticker" type="VARCHAR(255)"/>
+            <column name="timeframe" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price_data_history_id" type="BIGINT"/>
+            <column name="trade_signals_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-16">
+        <createTable tableName="signal_service_intrument">
+            <column name="signal_service_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="intrument_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-17">
+        <createTable tableName="site_account">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="site_accountPK"/>
+            </column>
+            <column name="account_balance" type="DECIMAL(21, 2)"/>
+            <column name="account_close_date" type="date"/>
+            <column name="account_email" type="VARCHAR(255)"/>
+            <column name="account_name" type="VARCHAR(255)"/>
+            <column name="account_open_date" type="date"/>
+            <column name="account_real" type="BOOLEAN"/>
+            <column name="mt4account_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-18">
+        <createTable tableName="trade_journal_post">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="trade_journal_postPK"/>
+            </column>
+            <column name="date_added" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_approved" type="date"/>
+            <column name="media_1" type="BLOB"/>
+            <column name="media_1_content_type" type="VARCHAR(255)"/>
+            <column name="media_2" type="BLOB"/>
+            <column name="media_2_content_type" type="VARCHAR(255)"/>
+            <column name="media_3" type="BLOB"/>
+            <column name="media_3_content_type" type="VARCHAR(255)"/>
+            <column name="media_4" type="BLOB"/>
+            <column name="media_4_content_type" type="VARCHAR(255)"/>
+            <column name="post_body" type="VARCHAR(255)"/>
+            <column name="post_title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment_id" type="BIGINT"/>
+            <column name="video_post_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-19">
+        <createTable tableName="trade_signals">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="trade_signalsPK"/>
+            </column>
+            <column name="action_to_take" type="CLOB"/>
+            <column name="background" type="CLOB"/>
+            <column name="description" type="CLOB"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="note" type="VARCHAR(255)"/>
+            <column name="number_of_bars" type="INT"/>
+            <column name="sequence_number" type="INT"/>
+            <column name="signal_indicates" type="VARCHAR(255)"/>
+            <column name="signals_sequences_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-20">
+        <createTable tableName="video_post">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="video_postPK"/>
+            </column>
+            <column name="date_added" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_approved" type="date"/>
+            <column name="media" type="BLOB"/>
+            <column name="media_content_type" type="VARCHAR(255)"/>
+            <column name="post_body" type="VARCHAR(255)"/>
+            <column name="post_title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-21">
+        <createTable tableName="watchlist">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="watchlistPK"/>
+            </column>
+            <column name="date_created" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_inactive" type="date"/>
+            <column name="watchlist_description" type="VARCHAR(255)"/>
+            <column name="watchlist_inactive" type="BOOLEAN"/>
+            <column name="watchlist_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-22">
+        <createTable tableName="watchlist_intrument">
+            <column name="watchlist_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="intrument_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-23">
+        <addUniqueConstraint columnNames="instrument_id" constraintName="UC_DAILY_ANALYSIS_POSTINSTRUMENT_ID_COL" tableName="daily_analysis_post"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-24">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-25">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-26">
+        <addUniqueConstraint columnNames="instrument_id" constraintName="UC_MT_4_TRADEINSTRUMENT_ID_COL" tableName="mt_4_trade"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-27">
+        <addUniqueConstraint columnNames="trade_journal_post_id" constraintName="UC_MT_4_TRADETRADE_JOURNAL_POST_ID_COL" tableName="mt_4_trade"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-28">
+        <addForeignKeyConstraint baseColumnNames="instrument_id" baseTableName="daily_analysis_post" constraintName="FK20r4j6j65k7six1t41qs41sp9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="instrument" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-29">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-30">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-31">
+        <addForeignKeyConstraint baseColumnNames="instrument_id" baseTableName="mt_4_trade" constraintName="FK3po7d35y88deteu1un1wn4qdy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="instrument" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-32">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-33">
+        <addForeignKeyConstraint baseColumnNames="mt4trade_id" baseTableName="mt_4_account" constraintName="FK5rbltqxo95ki7ioynh3cs886c" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mt_4_trade" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-34">
+        <addForeignKeyConstraint baseColumnNames="signal_service_id" baseTableName="signal_service_intrument" constraintName="FK6mh7ebs1cu1n0yg46gplhprt2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="signal_service" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-35">
+        <addForeignKeyConstraint baseColumnNames="instrument_id" baseTableName="price_data_history" constraintName="FK8phpx82kh6ccu90dm5aqfu9lt" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="instrument" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-36">
+        <addForeignKeyConstraint baseColumnNames="comment_id" baseTableName="trade_journal_post" constraintName="FK8ufe0geklgeod2lqg5ahg68rm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="comment" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-37">
+        <addForeignKeyConstraint baseColumnNames="trade_signals_id" baseTableName="signal_service" constraintName="FKc7xn9ucv67vg8budjijtr9m" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="trade_signals" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-38">
+        <addForeignKeyConstraint baseColumnNames="watchlist_id" baseTableName="mt_4_account" constraintName="FKg6b66hua0j0ewc5x8ql03wr3r" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="watchlist" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-39">
+        <addForeignKeyConstraint baseColumnNames="price_data_history_id" baseTableName="signal_service" constraintName="FKgp5n75irxonu4aiaaqsonqdag" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="price_data_history" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-40">
+        <addForeignKeyConstraint baseColumnNames="intrument_id" baseTableName="signal_service_intrument" constraintName="FKi23ulk8pqmb9l3jlwxi980660" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="instrument" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-41">
+        <addForeignKeyConstraint baseColumnNames="signals_sequences_id" baseTableName="trade_signals" constraintName="FKi2x9ox2ivo85t0ggci5mssljn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="signal_sequences" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-42">
+        <addForeignKeyConstraint baseColumnNames="intrument_id" baseTableName="watchlist_intrument" constraintName="FKk94gqvlqkoacefwcddkmck6ty" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="instrument" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-43">
+        <addForeignKeyConstraint baseColumnNames="trade_journal_post_id" baseTableName="mt_4_trade" constraintName="FKl6vw48yp9mj1pbu95bgp123ta" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="trade_journal_post" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-44">
+        <addForeignKeyConstraint baseColumnNames="mt4account_id" baseTableName="site_account" constraintName="FKmcj1snnoxktqkeg342eylhmec" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mt_4_account" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-45">
+        <addForeignKeyConstraint baseColumnNames="video_post_id" baseTableName="trade_journal_post" constraintName="FKnykus5rn851rnpl3o7w87426n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="video_post" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-46">
+        <addForeignKeyConstraint baseColumnNames="watchlist_id" baseTableName="watchlist_intrument" constraintName="FKok7agubi6u9ct40ixlwn5jkg0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="watchlist" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-47">
+        <addForeignKeyConstraint baseColumnNames="mt4account_id" baseTableName="daily_analysis_post" constraintName="FKqd02gg4p8b171gtlg20uuv6t" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mt_4_account" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-48">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="shipping_details" constraintName="FKqdukpcmhnah0314ves313tm20" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="Ianhe (generated)" id="1605953070020-49">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="site_account" constraintName="FKrfrtxijyym507r71rt30itsf1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

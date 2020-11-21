@@ -22,6 +22,9 @@
             <column name="alert_time" type="datetime">
                 <constraints nullable="true" />
             </column>
+            <column name="ticker" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="alert_text" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -101,6 +104,7 @@
             <column name="id" type="numeric"/>
             <column name="alert_date" type="date"/>
             <column name="alert_time" type="datetime"/>
+            <column name="ticker" type="string"/>
             <column name="alert_text" type="string"/>
             <column name="alert_description" type="clob"/>
             <column name="signal_indicates" type="string"/>

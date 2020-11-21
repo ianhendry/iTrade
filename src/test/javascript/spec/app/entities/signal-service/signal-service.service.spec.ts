@@ -34,6 +34,7 @@ describe('Service Tests', () => {
         currentDate,
         'AAAAAAA',
         'AAAAAAA',
+        'AAAAAAA',
         SIGNALINDICATES.STRENGTH,
         'image/png',
         'AAAAAAA',
@@ -94,6 +95,7 @@ describe('Service Tests', () => {
           {
             alertDate: currentDate.format(DATE_FORMAT),
             alertTime: currentDate.format(DATE_TIME_FORMAT),
+            ticker: 'BBBBBB',
             alertText: 'BBBBBB',
             alertDescription: 'BBBBBB',
             signalIndicates: 'BBBBBB',
@@ -129,6 +131,7 @@ describe('Service Tests', () => {
           {
             alertDate: currentDate.format(DATE_FORMAT),
             alertTime: currentDate.format(DATE_TIME_FORMAT),
+            ticker: 'BBBBBB',
             alertText: 'BBBBBB',
             alertDescription: 'BBBBBB',
             signalIndicates: 'BBBBBB',

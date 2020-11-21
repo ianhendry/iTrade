@@ -18,6 +18,7 @@
       },
       "alertDate": "Alert Date",
       "alertTime": "Alert Time",
+      "ticker": "Ticker",
       "alertText": "Alert Text",
       "alertDescription": "Alert Description",
       "signalIndicates": "Signal Indicates",

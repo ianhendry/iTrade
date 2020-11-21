@@ -45,6 +45,9 @@ public class SignalService implements Serializable {
     @Column(name = "alert_time")
     private ZonedDateTime alertTime;
 
+    @Column(name = "ticker")
+    private String ticker;
+
     @Column(name = "alert_text")
     private String alertText;
 
@@ -136,6 +139,19 @@ public class SignalService implements Serializable {
 
     public void setAlertTime(ZonedDateTime alertTime) {
         this.alertTime = alertTime;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public SignalService ticker(String ticker) {
+        this.ticker = ticker;
+        return this;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
     }
 
     public String getAlertText() {
@@ -369,6 +385,7 @@ public class SignalService implements Serializable {
             "id=" + getId() +
             ", alertDate='" + getAlertDate() + "'" +
             ", alertTime='" + getAlertTime() + "'" +
+            ", ticker='" + getTicker() + "'" +
             ", alertText='" + getAlertText() + "'" +
             ", alertDescription='" + getAlertDescription() + "'" +
             ", signalIndicates='" + getSignalIndicates() + "'" +

@@ -204,6 +204,7 @@ public class ScanDataOneHourBars {
 			signalService.setTimeframe(timeFrameHelper.getTimeFrameFromPeriod(newBar.getPeriod()));
 			signalService.setAlertDate(LocalDate.now());
 			signalService.setAlertTime(nowDate);
+			signalService.setTicker(newBar.getInstrument());
 			signalService.setAlertPrice(newBar.getClosePrice());
 			signalService.setAlertText(tradeSignal.getName());
 			signalService.setAlertDescription(tradeSignal.getDescription());

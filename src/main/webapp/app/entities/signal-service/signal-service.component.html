@@ -25,6 +25,7 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="alertDate"><span jhiTranslate="iTradeApp.signalService.alertDate">Alert Date</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="alertTime"><span jhiTranslate="iTradeApp.signalService.alertTime">Alert Time</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ticker"><span jhiTranslate="iTradeApp.signalService.ticker">Ticker</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="alertText"><span jhiTranslate="iTradeApp.signalService.alertText">Alert Text</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="alertDescription"><span jhiTranslate="iTradeApp.signalService.alertDescription">Alert Description</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="signalIndicates"><span jhiTranslate="iTradeApp.signalService.signalIndicates">Signal Indicates</span> <fa-icon icon="sort"></fa-icon></th>
@@ -46,6 +47,7 @@
                     <td><a [routerLink]="['/signal-service', signalService.id, 'view']">{{ signalService.id }}</a></td>
                     <td>{{ signalService.alertDate | date:'mediumDate' }}</td>
                     <td>{{ signalService.alertTime | date:'medium' }}</td>
+                    <td>{{ signalService.ticker }}</td>
                     <td>{{ signalService.alertText }}</td>
                     <td>{{ signalService.alertDescription }}</td>
                     <td jhiTranslate="{{ 'iTradeApp.SIGNALINDICATES.' + signalService.signalIndicates }}">{{ signalService.signalIndicates }}</td>

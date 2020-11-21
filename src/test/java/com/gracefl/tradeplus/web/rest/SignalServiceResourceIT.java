@@ -56,6 +56,9 @@ public class SignalServiceResourceIT {
     private static final ZonedDateTime DEFAULT_ALERT_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_ALERT_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
+    private static final String DEFAULT_TICKER = "AAAAAAAAAA";
+    private static final String UPDATED_TICKER = "BBBBBBBBBB";
+
     private static final String DEFAULT_ALERT_TEXT = "AAAAAAAAAA";
     private static final String UPDATED_ALERT_TEXT = "BBBBBBBBBB";
 
@@ -121,6 +124,7 @@ public class SignalServiceResourceIT {
         SignalService signalService = new SignalService()
             .alertDate(DEFAULT_ALERT_DATE)
             .alertTime(DEFAULT_ALERT_TIME)
+            .ticker(DEFAULT_TICKER)
             .alertText(DEFAULT_ALERT_TEXT)
             .alertDescription(DEFAULT_ALERT_DESCRIPTION)
             .signalIndicates(DEFAULT_SIGNAL_INDICATES)
@@ -145,6 +149,7 @@ public class SignalServiceResourceIT {
         SignalService signalService = new SignalService()
             .alertDate(UPDATED_ALERT_DATE)
             .alertTime(UPDATED_ALERT_TIME)
+            .ticker(UPDATED_TICKER)
             .alertText(UPDATED_ALERT_TEXT)
             .alertDescription(UPDATED_ALERT_DESCRIPTION)
             .signalIndicates(UPDATED_SIGNAL_INDICATES)
@@ -181,6 +186,7 @@ public class SignalServiceResourceIT {
         SignalService testSignalService = signalServiceList.get(signalServiceList.size() - 1);
         assertThat(testSignalService.getAlertDate()).isEqualTo(DEFAULT_ALERT_DATE);
         assertThat(testSignalService.getAlertTime()).isEqualTo(DEFAULT_ALERT_TIME);
+        assertThat(testSignalService.getTicker()).isEqualTo(DEFAULT_TICKER);
         assertThat(testSignalService.getAlertText()).isEqualTo(DEFAULT_ALERT_TEXT);
         assertThat(testSignalService.getAlertDescription()).isEqualTo(DEFAULT_ALERT_DESCRIPTION);
         assertThat(testSignalService.getSignalIndicates()).isEqualTo(DEFAULT_SIGNAL_INDICATES);
@@ -266,6 +272,7 @@ public class SignalServiceResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(signalService.getId().intValue())))
             .andExpect(jsonPath("$.[*].alertDate").value(hasItem(DEFAULT_ALERT_DATE.toString())))
             .andExpect(jsonPath("$.[*].alertTime").value(hasItem(sameInstant(DEFAULT_ALERT_TIME))))
+            .andExpect(jsonPath("$.[*].ticker").value(hasItem(DEFAULT_TICKER)))
             .andExpect(jsonPath("$.[*].alertText").value(hasItem(DEFAULT_ALERT_TEXT)))
             .andExpect(jsonPath("$.[*].alertDescription").value(hasItem(DEFAULT_ALERT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].signalIndicates").value(hasItem(DEFAULT_SIGNAL_INDICATES.toString())))
@@ -313,6 +320,7 @@ public class SignalServiceResourceIT {
             .andExpect(jsonPath("$.id").value(signalService.getId().intValue()))
             .andExpect(jsonPath("$.alertDate").value(DEFAULT_ALERT_DATE.toString()))
             .andExpect(jsonPath("$.alertTime").value(sameInstant(DEFAULT_ALERT_TIME)))
+            .andExpect(jsonPath("$.ticker").value(DEFAULT_TICKER))
             .andExpect(jsonPath("$.alertText").value(DEFAULT_ALERT_TEXT))
             .andExpect(jsonPath("$.alertDescription").value(DEFAULT_ALERT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.signalIndicates").value(DEFAULT_SIGNAL_INDICATES.toString()))
@@ -349,6 +357,7 @@ public class SignalServiceResourceIT {
         updatedSignalService
             .alertDate(UPDATED_ALERT_DATE)
             .alertTime(UPDATED_ALERT_TIME)
+            .ticker(UPDATED_TICKER)
             .alertText(UPDATED_ALERT_TEXT)
             .alertDescription(UPDATED_ALERT_DESCRIPTION)
             .signalIndicates(UPDATED_SIGNAL_INDICATES)
@@ -373,6 +382,7 @@ public class SignalServiceResourceIT {
         SignalService testSignalService = signalServiceList.get(signalServiceList.size() - 1);
         assertThat(testSignalService.getAlertDate()).isEqualTo(UPDATED_ALERT_DATE);
         assertThat(testSignalService.getAlertTime()).isEqualTo(UPDATED_ALERT_TIME);
+        assertThat(testSignalService.getTicker()).isEqualTo(UPDATED_TICKER);
         assertThat(testSignalService.getAlertText()).isEqualTo(UPDATED_ALERT_TEXT);
         assertThat(testSignalService.getAlertDescription()).isEqualTo(UPDATED_ALERT_DESCRIPTION);
         assertThat(testSignalService.getSignalIndicates()).isEqualTo(UPDATED_SIGNAL_INDICATES);

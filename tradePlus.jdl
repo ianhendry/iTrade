@@ -91,6 +91,7 @@ entity TradeSignals {
 entity SignalService {
 	alertDate LocalDate required
     alertTime ZonedDateTime
+    ticker String
     alertText String
     alertDescription TextBlob
     signalIndicates SIGNALINDICATES

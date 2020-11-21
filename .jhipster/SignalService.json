@@ -11,6 +11,10 @@
       "fieldType": "ZonedDateTime"
     },
     {
+      "fieldName": "ticker",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "alertText",
       "fieldType": "String"
     },

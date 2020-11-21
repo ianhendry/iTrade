@@ -11,6 +11,7 @@ export interface ISignalService {
   id?: number;
   alertDate?: Moment;
   alertTime?: Moment;
+  ticker?: string;
   alertText?: string;
   alertDescription?: any;
   signalIndicates?: SIGNALINDICATES;
@@ -33,6 +34,7 @@ export class SignalService implements ISignalService {
     public id?: number,
     public alertDate?: Moment,
     public alertTime?: Moment,
+    public ticker?: string,
     public alertText?: string,
     public alertDescription?: any,
     public signalIndicates?: SIGNALINDICATES,
