@@ -1,9 +1,7 @@
 package com.gracefl.tradeplus.marketdata;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -27,7 +25,6 @@ import com.gracefl.tradeplus.domain.SignalService;
 import com.gracefl.tradeplus.domain.TradeSignals;
 import com.gracefl.tradeplus.domain.enumeration.BARCLOSE;
 import com.gracefl.tradeplus.domain.enumeration.SIGNALBARSIZE;
-import com.gracefl.tradeplus.domain.enumeration.SIGNALINDICATES;
 import com.gracefl.tradeplus.helpers.json.InstrumentOHLC;
 import com.gracefl.tradeplus.repository.InstrumentRepository;
 import com.gracefl.tradeplus.repository.SignalServiceRepository;
@@ -76,22 +73,6 @@ public class ScanDataFiveMinBars {
 	private static List<InstrumentOHLC> goldBarHistory = new ArrayList<>();  
 
 	Set<SignalService> signalServiceSet = new HashSet<SignalService>();
-	
-	//Instrument pair = null;
-	
-    //TODO check Point in MT4 for GOLD
-    //double point = 0.00001; // this is for currency pairs but not gold
-    //double averageSpread = 0;
-    //double averageVolume = 0;
-    //double spreadHL = 0;
-    //double middleOfBar = 0; 
-	//double upOfBar = 0;    
-	//double downOfBar = 0;
-	
-	//InstrumentOHLC b1 = null;
-	//InstrumentOHLC b2 = null;
-	//InstrumentOHLC b3 = null;
-	//InstrumentOHLC b4 = null;
 	
 	public void scanBar (InstrumentOHLC newBar) {
 		

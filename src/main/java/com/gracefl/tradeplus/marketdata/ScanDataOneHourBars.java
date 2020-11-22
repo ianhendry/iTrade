@@ -25,7 +25,6 @@ import com.gracefl.tradeplus.domain.SignalService;
 import com.gracefl.tradeplus.domain.TradeSignals;
 import com.gracefl.tradeplus.domain.enumeration.BARCLOSE;
 import com.gracefl.tradeplus.domain.enumeration.SIGNALBARSIZE;
-import com.gracefl.tradeplus.domain.enumeration.SIGNALINDICATES;
 import com.gracefl.tradeplus.helpers.json.InstrumentOHLC;
 import com.gracefl.tradeplus.repository.InstrumentRepository;
 import com.gracefl.tradeplus.repository.SignalServiceRepository;
@@ -74,13 +73,6 @@ public class ScanDataOneHourBars {
 	private static List<InstrumentOHLC> goldBarHistory = new ArrayList<>();  
 
 	Set<SignalService> signalServiceSet = new HashSet<SignalService>();
-	
-    //TODO check Point in MT4 for GOLD
-	
-	//InstrumentOHLC b1 = null;
-	//InstrumentOHLC b2 = null;
-	////InstrumentOHLC b3 = null;
-	//InstrumentOHLC b4 = null;
 	
 	public void scanBar (InstrumentOHLC newBar) {
 		
